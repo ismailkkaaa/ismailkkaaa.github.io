@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Albasith — Graphic Designer & Creative Developer</title>
+    <!-- Basic SEO -->
+<!-- Basic SEO -->
+<title>Albasith — Graphic Designer & Creative Developer</title>
+<meta name="description" content="Albasith is a graphic designer focused on posters, branding, thumbnails, and visual identity, with experience in UI design, animation, and creative digital projects.">
+<meta name="author" content="Albasith">
+<meta name="keywords" content="Albasith, graphic designer, poster design, branding, visual identity, thumbnails, UI design, creative portfolio">
+
+<!-- Mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Albasith — Graphic Designer & Creative Developer">
+<meta property="og:description" content="Graphic designer specializing in posters, branding, thumbnails, and visual identity. Explore selected works and creative projects.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://albasith.netlify.app">
+<meta property="og:image" content="https://albasith.netlify.app/assets/images/og-image.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Albasith — Graphic Designer & Creative Developer">
+<meta name="twitter:description" content="Graphic designer focused on posters, branding, thumbnails, and visual identity.">
+<meta name="twitter:image" content="https://albasith.netlify.app/assets/images/og-image.png">
+
+    <style>
+        /* Import Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        /* Base styles */
+        :root {
+          --color-primary: #0a0a0a;
+          --color-secondary: #1a1a1a;
+          --color-accent-purple: #a855f7;
+          --color-accent-pink: #ec4899;
+          --color-accent-gold: #fbbf24;
+          --color-text-primary: #f0f0f0;
+          --color-text-secondary: #a0a0a0;
+          --gradient-primary: linear-gradient(90deg, #a855f7, #ec4899, #fbbf24);
+          --gradient-secondary: linear-gradient(135deg, #a855f7, #ec4899);
+          --shadow-glow: 0 0 15px rgba(168, 85, 247, 0.3), 0 0 30px rgba(236, 72, 153, 0.2);
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Inter', sans-serif;
+          background-color: var(--color-primary);
+          color: var(--color-text-primary);
+          overflow-x: hidden;
+          min-height: 100vh;
+          position: relative;
+          width: 100%;
+          max-width: 100vw;
+          margin: 0;
+          padding: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          font-family: 'Playfair Display', serif;
+          font-weight: 600;
+        }
+
+        .gradient-text {
+          background: var(--gradient-primary);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .btn-primary {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem 1.5rem;
+          border-radius: 9999px;
+          background: linear-gradient(to right, #a855f7, #ec4899);
+          color: white;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+          text-decoration: none;
+          min-height: 44px;
+          width: 100%;
+          max-width: 280px;
+          user-select: none;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+        }
+        
+        @media (min-width: 640px) {
+          .btn-primary {
+            width: auto;
+            min-width: 160px;
+          }
+        }
+        
+        .btn-primary:hover {
+          background: linear-gradient(to right, #9333ea, #db2777);
+          box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-secondary {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem 1.5rem;
+          border-radius: 9999px;
+          background: transparent;
+          border: 1px solid #4b5563;
+          color: white;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          cursor: pointer;
+          text-decoration: none;
+          min-height: 44px;
+          width: 100%;
+          max-width: 280px;
+          user-select: none;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+        }
+        
+        @media (min-width: 640px) {
+          .btn-secondary {
+            width: auto;
+            min-width: 160px;
+          }
+        }
+        
+        .btn-secondary:hover {
+          background: #1f2937;
+          border-color: #6b7280;
+        }
+
+        .card {
+          background: #0f0f0f;
+          border: 1px solid #1f2937;
+          border-radius: 0.75rem;
+          padding: 1.5rem;
+          transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+          border-color: #4b5563;
+          box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.1);
+        }
+
+        .section-container {
+          max-width: 80rem;
+          margin: 0 auto;
+          padding: 4rem 1rem;
+        }
+        
+        @media (min-width: 640px) {
+          .section-container {
+            padding: 5rem 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .section-container {
+            padding: 6rem 2rem;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .section-container {
+            padding: 7rem 2rem;
+          }
+        }
+
+        .glow-effect {
+          transition: all 0.3s ease;
+        }
+        
+        .glow-effect:hover {
+          box-shadow: var(--shadow-glow);
+        }
+
+        .animated-bg {
+          background-size: 400% 400%;
+          animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }  
+                
+        /* Header styles */
+        header {
+          position: fixed;
+          width: 100%;
+          padding: 1rem;
+          z-index: 50;
+          backdrop-filter: blur(5px);
+          background-color: rgba(10, 10, 10, 0.9);
+          border-bottom: 1px solid #1f2937;
+        }
+                
+        @media (min-width: 640px) {
+          header {
+            padding: 1.5rem 1rem;
+          }
+        }
+                
+        .header-content {
+          max-width: 80rem;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+                
+        .logo {
+          font-size: 1.25rem;
+          font-weight: bold;
+        }
+                
+        nav ul {
+          display: flex;
+          gap: 2rem;
+        }
+                
+        nav a {
+          color: #d1d5db;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+                
+        nav a:hover {
+          color: white;
+        }
+                
+        .mobile-menu-btn {
+          display: none;
+          background: none;
+          border: none;
+          color: white;
+          cursor: pointer;
+        }
+                
+        @media (max-width: 767px) {
+          nav.hidden-md {
+            display: none;
+          }
+          .mobile-menu-btn.hidden-lg {
+            display: block;
+          }
+        }
+        
+        /* Hero section */
+        .hero {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          padding-top: 6rem;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          background: radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.1) 0%, transparent 50%), 
+                      radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+        }
+        
+        @media (min-width: 640px) {
+          .hero {
+            padding-top: 8rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .hero {
+            padding-left: 2rem;
+            padding-right: 2rem;
+          }
+        }
+        
+        .hero::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+          opacity: 0.1;
+          pointer-events: none;
+        }
+        
+        .hero-content {
+          position: relative;
+          z-index: 10;
+          text-align: center;
+          max-width: 48rem;
+          margin: 0 auto;
+          padding: 0;
+          width: 100%;
+        }
+        
+        .hero h1 {
+          font-size: 2rem;
+          margin-bottom: 1.25rem;
+          line-height: 1.2;
+          padding: 0 0.5rem;
+        }
+        
+        .hero-name {
+          font-size: 1.125rem;
+          color: #a855f7;
+          margin-bottom: 1rem;
+          font-weight: 500;
+          text-align: center;
+        }
+        
+        @media (min-width: 640px) {
+          .hero-name {
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+          }
+        }
+        
+        @media (min-width: 480px) {
+          .hero h1 {
+            font-size: 2.5rem;
+          }
+        }
+        
+        @media (min-width: 640px) {
+          .hero h1 {
+            font-size: 3rem;
+            padding: 0 1rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .hero h1 {
+            font-size: 4rem;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .hero h1 {
+            font-size: 5rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        .hero p {
+          font-size: 1rem;
+          color: #d1d5db;
+          margin-bottom: 1.75rem;
+          max-width: 32rem;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 0 1rem;
+          line-height: 1.6;
+        }
+        
+        @media (min-width: 480px) {
+          .hero p {
+            font-size: 1.125rem;
+          }
+        }
+        
+        @media (min-width: 640px) {
+          .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .hero p {
+            padding: 0 2rem;
+          }
+        }
+        
+        .hero-buttons {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: center;
+          padding: 0 1rem;
+          width: 100%;
+          max-width: 300px;
+          margin: 0 auto;
+        }
+        
+        @media (min-width: 640px) {
+          .hero-buttons {
+            padding: 0;
+            max-width: none;
+            width: auto;
+          }
+        }
+        
+        @media (min-width: 640px) {
+          .hero-buttons {
+            flex-direction: row;
+            justify-content: center;
+            gap: 1rem;
+          }
+        }
+        
+        /* About section */
+        .about {
+          padding-top: 0;
+        }
+        
+        .about-content {
+          text-align: center;
+          margin-bottom: 2.5rem;
+          padding: 0 1rem;
+        }
+        
+        @media (min-width: 640px) {
+          .about-content {
+            margin-bottom: 3rem;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .about-content {
+            margin-bottom: 4rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        .about h2 {
+          font-size: 1.75rem;
+          margin-bottom: 1rem;
+          line-height: 1.3;
+          padding: 0 0.5rem;
+        }
+        
+        @media (min-width: 480px) {
+          .about h2 {
+            font-size: 1.875rem;
+          }
+        }
+        
+        @media (min-width: 640px) {
+          .about h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1.25rem;
+            padding: 0 1rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .about h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        .about p {
+          font-size: 1rem;
+          color: #d1d5db;
+          max-width: 48rem;
+          margin: 0 auto 1.75rem;
+          padding: 0 1rem;
+          line-height: 1.6;
+        }
+        
+        .identity-line {
+          font-size: 1rem;
+          color: #a855f7;
+          font-weight: 500;
+          margin: 1.5rem auto 0;
+          padding: 0 1rem;
+          max-width: 48rem;
+          line-height: 1.6;
+        }
+        
+        @media (min-width: 640px) {
+          .identity-line {
+            font-size: 1.125rem;
+            margin: 2rem auto 0;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 480px) {
+          .about p {
+            font-size: 1.125rem;
+          }
+        }
+        
+        @media (min-width: 640px) {
+          .about p {
+            font-size: 1.25rem;
+            margin: 0 auto 2.5rem;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .about p {
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        .building-grid {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 1rem;
+          padding: 0 1rem;
+          max-width: 64rem;
+          margin: 0 auto;
+        }
+        
+        @media (min-width: 640px) {
+          .building-grid {
+            gap: 1.25rem;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .building-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .building-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        .building-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 1.25rem;
+          width: 100%;
+        }
+        
+        @media (min-width: 640px) {
+          .building-card {
+            padding: 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .building-card {
+            padding: 2rem;
+          }
+        }
+        
+        .building-icon {
+          color: #a855f7;
+          margin-bottom: 1rem;
+          width: 3rem;
+          height: 3rem;
+          flex-shrink: 0;
+        }
+        
+        .building-icon svg {
+          width: 100%;
+          height: 100%;
+          viewBox: "0 0 24 24";
+        }
+        
+        /* Projects section */
+        .projects-categories {
+          display: none;
+        }
+        
+        .projects-grid {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 1.25rem;
+          padding: 0 1rem;
+          max-width: 64rem;
+          margin: 0 auto;
+        }
+        
+        @media (min-width: 640px) {
+          .projects-grid {
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .projects-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        .project-card {
+          overflow: hidden;
+          transition: transform 0.3s ease;
+          min-height: 300px;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+        
+        @media (min-width: 640px) {
+          .project-card {
+            min-height: 320px;
+          }
+        }
+        
+        .project-card:hover {
+          transform: scale(1.02);
+        }
+        
+        .project-image {
+          width: 100%;
+          height: 9rem;
+          object-fit: cover;
+          border-radius: 0.5rem;
+          margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 480px) {
+          .project-image {
+            height: 10rem;
+          }
+        }
+        
+        @media (min-width: 640px) {
+          .project-image {
+            height: 12rem;
+          }
+        }
+        
+        .project-title {
+          font-size: 1.25rem;
+          margin-bottom: 0.5rem;
+        }
+        
+        .project-description {
+          color: #9ca3af;
+          margin-bottom: 1rem;
+          flex-grow: 1;
+        }
+        
+        .project-link {
+          color: #a855f7;
+          text-decoration: none;
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+        
+        .project-link:hover {
+          color: #c084fc;
+        }
+        
+        /* Workflow section */
+        .workflow {
+          background: linear-gradient(to bottom, var(--color-primary), #121212);
+        }
+        
+        .workflow-grid {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 1.25rem;
+          padding: 0 1rem;
+          max-width: 64rem;
+          margin: 0 auto;
+        }
+        
+        @media (min-width: 640px) {
+          .workflow-grid {
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .workflow-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .workflow-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            padding: 0 2rem;
+          }
+        }
+        
+        .workflow-step {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 1.25rem;
+          min-height: 180px;
+          width: 100%;
+        }
+        
+        @media (min-width: 640px) {
+          .workflow-step {
+            padding: 1.5rem;
+            min-height: 200px;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .workflow-step {
+            padding: 2rem;
+          }
+        }
+        
+        .workflow-number {
+          margin-top: 0.75rem;
+          font-size: 1.25rem;
+          color: #4b5563;
+          font-weight: bold;
+        }
+        
+        @media (min-width: 640px) {
+          .workflow-number {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+          }
+        }
+        
+        /* Contact section */
+        .contact {
+          background: linear-gradient(to bottom, #121212, var(--color-primary));
+        }
+        
+        .contact-socials {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 1.75rem;
+          padding: 0 1rem;
+          max-width: 32rem;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        
+        @media (min-width: 480px) {
+          .contact-socials {
+            gap: 1rem;
+          }
+        }
+        
+        @media (min-width: 640px) {
+          .contact-socials {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding: 0 1.5rem;
+            max-width: none;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .contact-socials {
+            padding: 0 2rem;
+            margin-bottom: 3rem;
+          }
+        }
+        
+        /* Mobile contact button fixes */
+        @media (max-width: 768px) {
+          .contact-socials .btn-primary {
+            width: 100%;
+            max-width: 320px;
+            height: 52px;
+            padding: 0 1.25rem;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .contact-socials .btn-primary svg {
+            width: 22px;
+            height: 22px;
+            margin-right: 0.625rem;
+            flex-shrink: 0;
+          }
+        }
+        
+        /* Prevent buttons from becoming circular */
+        .contact-socials .btn-primary {
+          border-radius: 9999px;
+          min-width: 120px;
+        }
+        
+        @media (max-width: 768px) {
+          .contact-socials .btn-primary {
+            border-radius: 26px; /* Half of 52px height for pill shape */
+          }
+        }
+        
+        /* Footer */
+        footer {
+          border-top: 1px solid #1f2937;
+          padding: 1.5rem 0;
+        }
+        
+        @media (min-width: 640px) {
+          footer {
+            padding: 2rem 0;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          footer {
+            padding: 2.5rem 0;
+          }
+        }
+        
+        .footer-content {
+          text-align: center;
+          padding: 0 1rem;
+        }
+        
+        @media (min-width: 640px) {
+          .footer-content {
+            padding: 0 1.5rem;
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .footer-content {
+            padding: 0 2rem;
+          }
+        }
+        
+        .footer-text {
+          color: #6b7280;
+          font-size: 0.875rem;
+          line-height: 1.5;
+        }
+        
+        @media (min-width: 640px) {
+          .footer-text {
+            font-size: 1rem;
+          }
+        }
+        
+        /* Animation placeholders */
+        .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .delay-1 {
+          animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+          animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+          animation-delay: 0.6s;
+        }
+        
+        /* Utility classes */
+        .text-center {
+          text-align: center;
+        }
+        
+        .text-3xl {
+          font-size: 1.875rem;
+          line-height: 1.3;
+        }
+        
+        @media (min-width: 768px) {
+          .text-3xl {
+            font-size: 2.25rem;
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .text-3xl {
+            font-size: 3rem;
+          }
+        }
+        
+        .max-w-2xl {
+          max-width: 42rem;
+        }
+        
+        .text-lg {
+          font-size: 1.125rem;
+          line-height: 1.6;
+        }
+        
+        @media (min-width: 640px) {
+          .text-lg {
+            font-size: 1.25rem;
+          }
+        }
+        
+        .mb-6 {
+          margin-bottom: 1.5rem;
+        }
+        
+        .mb-10 {
+          margin-bottom: 2.5rem;
+        }
+        
+        .mb-16 {
+          margin-bottom: 4rem;
+        }
+        
+        .mx-auto {
+          margin-left: auto;
+          margin-right: auto;
+        }
+        
+        .text-gray-300 {
+          color: #d1d5db;
+        }
+        
+        .text-gray-400 {
+          color: #9ca3af;
+        }
+        
+        .font-semibold {
+          font-weight: 600;
+        }
+        
+        .text-xl {
+          font-size: 1.25rem;
+          line-height: 1.4;
+        }
+        
+        .mb-3 {
+          margin-bottom: 0.75rem;
+        }
+        
+        .h-12 {
+          height: 3rem;
+        }
+        
+        .w-12 {
+          width: 3rem;
+        }
+        
+        .workflow-icon {
+          margin-bottom: 1rem;
+          width: 3rem;
+          height: 3rem;
+          flex-shrink: 0;
+        }
+        
+        .workflow-icon svg {
+          width: 100%;
+          height: 100%;
+          viewBox: "0 0 24 24";
+        }
+        
+        .mt-12 {
+          margin-top: 3rem;
+        }
+        
+        .pt-8 {
+          padding-top: 2rem;
+        }
+        
+        .text-gray-500 {
+          color: #6b7280;
+        }
+        
+        .border-t {
+          border-top-width: 1px;
+        }
+        
+        .border-gray-800 {
+          border-color: #1f2937;
+        }
+        
+        .md\:text-4xl {
+          font-size: 1.875rem;
+        }
+        
+        @media (min-width: 768px) {
+          .md\:text-4xl {
+            font-size: 2.25rem;
+          }
+        }
+        
+        .lg\:text-5xl {
+          font-size: 1.875rem;
+        }
+        
+        @media (min-width: 1024px) {
+          .lg\:text-5xl {
+            font-size: 3rem;
+          }
+        }
+        
+        .h-6 {
+          height: 1.5rem;
+        }
+        
+        .w-6 {
+          width: 1.5rem;
+        }
+        
+        .mr-2 {
+          margin-right: 0.5rem;
+        }
+        
+        .contact-icon {
+          width: 1.25rem;
+          height: 1.25rem;
+          margin-right: 0.5rem;
+          flex-shrink: 0;
+          viewBox: "0 0 24 24";
+        }
+        
+        @media (max-width: 768px) {
+          .contact-icon {
+            width: 1.375rem;
+            height: 1.375rem;
+            margin-right: 0.625rem;
+          }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="gradient-text">Portfolio</span>
+            </div>
+            <nav class="hidden-md">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Work</a></li>
+                    <li><a href="#workflow">Process</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn hidden-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <p class="hero-name">Hi, I'm Albasith — a creative developer & designer</p>
+            <h1>
+                I Build <span class="gradient-text">Digital Experiences</span> <br>That Feel <span class="gradient-text">Alive.</span>
+            </h1>
+            <p>
+                I design, experiment, and build across the web with attention to detail and a passion for creating meaningful interactions.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">View My Work</a>
+                <a href="#contact" class="btn-secondary">Let's Build Something</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section-container">
+        <div class="about-content fade-in delay-1">
+            <h2>
+                A Creator Who Likes <span class="gradient-text">Breaking & Rebuilding</span> Things
+            </h2>
+            <p>
+                I'm driven by curiosity and the joy of learning by doing. I love experimenting with new technologies, 
+                pushing boundaries, and refining my craft through constant iteration. My work reflects a deep attention 
+                to detail and a commitment to creating experiences that feel alive and purposeful.
+            </p>
+            <p class="identity-line">
+                I build websites, UI interfaces, and visual experiments with a focus on learning, experimentation, and creating meaningful digital interactions.
+            </p>
+        </div>
+
+        <div class="building-grid">
+            <div class="card glow-effect fade-in delay-2 building-card">
+                <div class="building-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Websites & UI</h3>
+                <p class="text-gray-400">Modern layouts, smooth UX, dark-themed interfaces with attention to detail</p>
+            </div>
+            <div class="card glow-effect fade-in delay-2 building-card">
+                <div class="building-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Visual Experiments</h3>
+                <p class="text-gray-400">Creative UI concepts, animations, and interactive effects</p>
+            </div>
+            <div class="card glow-effect fade-in delay-2 building-card">
+                <div class="building-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Cheat Sheets & Tools</h3>
+                <p class="text-gray-400">Clean, readable, practical tools for developers and creators</p>
+            </div>
+            <div class="card glow-effect fade-in delay-2 building-card">
+                <div class="building-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Graphic Design</h3>
+                <p class="text-gray-400">Posters, thumbnails, branding visuals with elegant aesthetics</p>
+            </div>
+            <div class="card glow-effect fade-in delay-2 building-card">
+                <div class="building-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">Video Editing</h3>
+                <p class="text-gray-400">Clean edits, pacing, mood, and storytelling through visuals</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section-container">
+        <div class="fade-in delay-1">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                    Featured <span class="gradient-text">Projects</span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    A collection of works that showcase my approach to design, experimentation, and problem-solving.
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="card glow-effect fade-in delay-2 project-card">
+                    <img src="assets\Interactive Dashboard.png" alt="Interactive Dashboard" class="project-image">
+                    <h3 class="project-title">Interactive Dashboard</h3>
+                    <p class="project-description">A data visualization dashboard with real-time updates and interactive elements</p>
+                    <a href="#contact" class="project-link">View Case Study →</a>
+                </div>
+                <div class="card glow-effect fade-in delay-2 project-card">
+                    <img src="assets\Animation Playground.png" alt="Animation Playground" class="project-image">
+                    <h3 class="project-title">Animation Playground</h3>
+                    <p class="project-description">Collection of experimental animations and micro-interactions</p>
+                    <a href="#contact" class="project-link">View Case Study →</a>
+                </div>
+                <div class="card glow-effect fade-in delay-2 project-card">
+                    <img src="assets\E-commerce Platform.png" alt="Brand Identity Design" class="project-image">
+                    <h3 class="project-title">E-commerce Platform</h3>
+                    <p class="project-description">Full-featured online shopping platform with advanced filtering and checkout</p>
+                    <a href="#contact" class="project-link">View Case Study →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Graphic Design Section -->
+    <section id="graphic-design" class="projects section-container">
+        <div class="fade-in delay-1">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                    Graphic <span class="gradient-text">Design</span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    My primary focus is on creating compelling posters, thumbnails, branding visuals, and cohesive visual identities that communicate powerful messages.
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="card glow-effect fade-in delay-2 project-card">
+                    <img src="assets/design-1.png" alt="Poster Design" class="project-image">
+                    <h3 class="project-title">Poster Design</h3>
+                    <p class="project-description">Event and promotional posters with strong visual impact</p>
+                    <a href="#contact" class="project-link">View Work →</a>
+                </div>
+                <div class="card glow-effect fade-in delay-2 project-card">
+                    <img src="assets/design-2.png" alt="Branding & Identity" class="project-image">
+                    <h3 class="project-title">Branding & Identity</h3>
+                    <p class="project-description">Logos, brand systems, and cohesive visual identities</p>
+                    <a href="#contact" class="project-link">View Work →</a>
+                </div>
+                <div class="card glow-effect fade-in delay-2 project-card">
+                    <img src="assets/design-3.png" alt="Thumbnails & Social Media" class="project-image">
+                    <h3 class="project-title">Thumbnails & Social Media</h3>
+                    <p class="project-description">High-impact thumbnails and social visuals</p>
+                    <a href="#contact" class="project-link">View Work →</a>
+                </div>
+                <div class="card glow-effect fade-in delay-2 project-card">
+                    <img src="assets/design-4.png" alt="Visual Identity" class="project-image">
+                    <h3 class="project-title">Visual Identity</h3>
+                    <p class="project-description">Cohesive visual systems that communicate powerful brand messages</p>
+                    <a href="#contact" class="project-link">View Work →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="workflow section-container">
+        <div class="fade-in delay-1">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                    My Personal <span class="gradient-text">Creative Process</span>
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    A non-corporate approach to bringing ideas to life through curiosity-driven exploration.
+                </p>
+            </div>
+
+            <div class="workflow-grid">
+                <div class="card glow-effect fade-in delay-2 workflow-step">
+                    <div class="workflow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Curiosity</h3>
+                    <p class="text-gray-400">I start with genuine interest and questions about the problem space</p>
+                    <div class="workflow-number">01</div>
+                </div>
+                <div class="card glow-effect fade-in delay-2 workflow-step">
+                    <div class="workflow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Experimentation</h3>
+                    <p class="text-gray-400">I prototype, test, and iterate to discover what works best</p>
+                    <div class="workflow-number">02</div>
+                </div>
+                <div class="card glow-effect fade-in delay-2 workflow-step">
+                    <div class="workflow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Building</h3>
+                    <p class="text-gray-400">I create robust, elegant solutions with attention to detail</p>
+                    <div class="workflow-number">03</div>
+                </div>
+                <div class="card glow-effect fade-in delay-2 workflow-step">
+                    <div class="workflow-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Refinement & Share</h3>
+                    <p class="text-gray-400">I polish, optimize, and share for feedback and impact</p>
+                    <div class="workflow-number">04</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section-container">
+        <div class="fade-in delay-1">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                    Want to <span class="gradient-text">Build Something</span> Interesting?
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-10">
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                </p>
+                
+                <div class="contact-socials">
+                    <a href="mailto:your-email@albasith399.com" class="btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Email
+                    </a>
+                    <a href="https://github.com/ismailkkaa" class="btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="https://discord.com/users/ismailkkaa" class="btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        Discord
+                    </a>
+                    <a href="https://wa.me/7025362767" class="btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        WhatsApp
+                    </a>
+                </div>
+                
+                <div class="pt-8 border-t border-gray-800 mt-12">
+                    <p class="text-gray-500">
+                        Designed and built with ❤️ by Albasith
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">© <span id="current-year">2026</span> Albasith. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in effect to elements
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => {
+                // Remove animation class and add it back to trigger animation
+                setTimeout(() => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 100);
+                }, 100);
+            });
+            
+            // Add interactivity to category buttons
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
