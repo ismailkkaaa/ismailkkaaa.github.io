@@ -214,7 +214,7 @@ function renderHighlights() {
         <button class="story-item motion-layer reveal-item" style="--stagger:${index}" type="button">
           <div class="story-item__ring">
             <div class="story-item__thumb">
-              <img class="story-item__image story-item__image--${item.fit || "contain"} ${item.scale || ""}" src="${item.src}" alt="${item.label} highlight cover">
+              <img class="story-item__image story-item__image--${item.fit || "contain"} ${item.scale || ""}" src="${item.src}" alt="${item.label} highlight cover" loading="lazy" decoding="async">
             </div>
           </div>
           <span>${item.label}</span>
