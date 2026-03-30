@@ -228,6 +228,8 @@ function renderHighlights() {
       `
     )
     .join("");
+
+  observeRevealTargets(highlightsRoot.querySelectorAll(".reveal-item"));
 }
 
 function renderTabs() {
