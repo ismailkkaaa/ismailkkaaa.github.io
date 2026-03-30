@@ -145,6 +145,17 @@ const linksList = document.getElementById("links-list");
 const modalTitle = document.getElementById("modal-title");
 const modalSubtitle = document.getElementById("modal-subtitle");
 const modalBody = document.getElementById("modal-body");
+const profileHero = document.querySelector(".profile-hero");
+const bioArea = document.querySelector(".bio-area");
+const actionRow = document.querySelector(".action-row");
+const statsRow = document.querySelector(".stats-row");
+const statDesigns = document.getElementById("stat-designs");
+const statEdits = document.getElementById("stat-edits");
+const statConcepts = document.getElementById("stat-concepts");
+const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+let revealObserver;
+let hasAnimatedStats = false;
+let parallaxFrame = 0;
 
 function iconSvg(type) {
   const paths = {
@@ -205,8 +216,8 @@ function renderMobileNav() {
 function renderHighlights() {
   highlightsRoot.innerHTML = highlights
     .map(
-      (item) => `
-        <button class="story-item" type="button">
+      (item, index) => `
+        <button class="story-item motion-layer reveal-item" style="--stagger:${index}" type="button">
           <div class="story-item__ring">
             <div class="story-item__thumb">
               <img class="story-item__image story-item__image--${item.fit || "contain"} ${item.scale || ""}" src="${item.src}" alt="${item.label} highlight cover">
@@ -302,13 +313,15 @@ function setPage(page) {
 
   renderDesktopNav();
   renderMobileNav();
+  observeRevealTargets(document.querySelectorAll(".content-panel.is-active"));
+  requestParallaxUpdate();
 }
 
 function renderGallery() {
   galleryRoot.innerHTML = galleryData[activeTab]
     .map(
-      (item) => `
-        <button class="grid-card${activeTab === "posts" ? " grid-card--poster" : ""}" type="button" data-id="${item.id}">
+      (item, index) => `
+        <button class="grid-card motion-layer reveal-item${activeTab === "posts" ? " grid-card--poster" : ""}" style="--stagger:${index}" type="button" data-id="${item.id}">
           ${activeTab === "posts" ? "" : badgeMarkup(activeTab, item)}
           ${renderGridMedia(item, activeTab)}
           <div class="grid-card__overlay"></div>
@@ -320,6 +333,8 @@ function renderGallery() {
       `
     )
     .join("");
+
+  observeRevealTargets(galleryRoot.querySelectorAll(".reveal-item"));
 
   Array.from(galleryRoot.querySelectorAll(".grid-card")).forEach((button) => {
     button.addEventListener("click", () => {
@@ -366,11 +381,176 @@ function openContactModal() {
     `<div class="contact-list">
       ${links
         .map(
-          (item) => `<a class="contact-link" href="${item.href}" target="_blank" rel="noreferrer"><span>${item.label}</span><span>${item.value}</span></a>`
+          (item) => `<a class="contact-link" href="${item.href}" target="_blank" rel="noreferrer">
+            <span class="contact-link__label">${item.label}</span>
+            <span class="contact-link__value">${item.value}</span>
+          </a>`
         )
         .join("")}
     </div>`
   );
+}
+
+function parseMetricValue(value) {
+  const match = String(value).trim().match(/^([\d,.]+)(.*)$/);
+  if (!match) {
+    return { target: 0, suffix: String(value) };
+  }
+
+  return {
+    target: Number(match[1].replace(/,/g, "")),
+    suffix: match[2] || ""
+  };
+}
+
+function easeOutCubic(progress) {
+  return 1 - (1 - progress) ** 3;
+}
+
+function animateCounter(element, value, duration = 1400) {
+  const { target, suffix } = parseMetricValue(value);
+
+  if (!target) {
+    element.textContent = value;
+    return;
+  }
+
+  const start = performance.now();
+
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const current = Math.round(target * easeOutCubic(progress));
+    element.textContent = `${current}${suffix}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+function startStatCounters() {
+  if (hasAnimatedStats) {
+    return;
+  }
+
+  hasAnimatedStats = true;
+  animateCounter(statDesigns, profile.designs, 1500);
+  setTimeout(() => animateCounter(statEdits, profile.edits, 1250), 120);
+  setTimeout(() => animateCounter(statConcepts, profile.concepts, 1100), 220);
+}
+
+function initStatCounters() {
+  [statDesigns, statEdits, statConcepts].forEach((element) => {
+    const { suffix } = parseMetricValue(element.dataset.target || "0+");
+    element.textContent = `0${suffix}`;
+  });
+
+  if (!("IntersectionObserver" in window) || motionQuery.matches || !statsRow) {
+    startStatCounters();
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          startStatCounters();
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.45 }
+  );
+
+  observer.observe(statsRow);
+}
+
+function observeRevealTargets(targets) {
+  targets.forEach((element) => {
+    element.classList.add("motion-layer", "reveal-item");
+  });
+
+  if (motionQuery.matches || !("IntersectionObserver" in window)) {
+    targets.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+    );
+  }
+
+  targets.forEach((element) => {
+    if (!element.classList.contains("is-visible")) {
+      revealObserver.observe(element);
+    }
+  });
+}
+
+function updateParallax() {
+  parallaxFrame = 0;
+
+  if (motionQuery.matches) {
+    [profileHero, bioArea, actionRow, storyStrip, galleryRoot].forEach((element) => {
+      if (element) {
+        element.style.setProperty("--float-y", "0px");
+      }
+    });
+    return;
+  }
+
+  const viewportHeight = window.innerHeight || 1;
+  const parallaxTargets = [
+    { element: profileHero, range: -24 },
+    { element: bioArea, range: -18 },
+    { element: actionRow, range: -12 },
+    { element: storyStrip, range: -16 },
+    { element: galleryRoot, range: -10 }
+  ];
+
+  parallaxTargets.forEach(({ element, range }) => {
+    if (!element || getComputedStyle(element).display === "none") {
+      return;
+    }
+
+    const rect = element.getBoundingClientRect();
+    const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+    const centered = Math.max(-0.5, Math.min(0.5, progress - 0.5));
+    element.style.setProperty("--float-y", `${centered * range}px`);
+  });
+}
+
+function requestParallaxUpdate() {
+  if (parallaxFrame) {
+    return;
+  }
+
+  parallaxFrame = requestAnimationFrame(updateParallax);
+}
+
+function initMotionEffects() {
+  observeRevealTargets(
+    [profileHero, bioArea, actionRow, storyStrip, tabStrip, galleryRoot, ...contentPanels].filter(Boolean)
+  );
+
+  updateParallax();
+  window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
+  window.addEventListener("resize", requestParallaxUpdate);
+  motionQuery.addEventListener("change", () => {
+    requestParallaxUpdate();
+    observeRevealTargets(document.querySelectorAll(".motion-layer"));
+  });
 }
 
 tabButtons.forEach((button) => {
@@ -403,9 +583,9 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-document.getElementById("stat-designs").textContent = profile.designs;
-document.getElementById("stat-edits").textContent = profile.edits;
-document.getElementById("stat-concepts").textContent = profile.concepts;
+statDesigns.dataset.target = profile.designs;
+statEdits.dataset.target = profile.edits;
+statConcepts.dataset.target = profile.concepts;
 document.getElementById("display-name").textContent = profile.displayName;
 document.getElementById("website-link").textContent = profile.website;
 
@@ -415,7 +595,10 @@ renderHighlights();
 renderTabs();
 renderGallery();
 setPage("home");
+initMotionEffects();
+initStatCounters();
 
 document.getElementById("sidebar-toggle").addEventListener("click", () => {
   document.body.classList.toggle("sidebar-collapsed");
+  requestParallaxUpdate();
 });
