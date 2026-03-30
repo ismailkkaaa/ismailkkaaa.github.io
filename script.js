@@ -39,12 +39,6 @@ const profileLinks = [
     icon: "whatsapp"
   },
   {
-    title: "Portfolio Website",
-    subtitle: "albasvisuals.com",
-    href: "https://www.albasvisuals.com",
-    icon: "globe"
-  },
-  {
     title: "Email",
     subtitle: profile.email,
     href: `mailto:${profile.email}`,
