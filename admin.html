@@ -6,7 +6,7 @@
     <title>Portfolio Admin | Albasith C A</title>
     <meta
       name="description"
-      content="Static admin panel for managing posters, reels, and development projects through data.json."
+      content="Static admin panel for managing posters, reels, and development projects through localStorage and JSON export."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,8 +16,38 @@
     />
     <link rel="stylesheet" href="./style.css" />
     <style>
+      .admin-shell {
+        max-width: 1320px;
+      }
+
       .admin-form {
         gap: 16px;
+      }
+
+      .admin-layout {
+        grid-template-columns: minmax(0, 1.4fr) minmax(320px, 430px);
+      }
+
+      .admin-card__header-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .admin-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 34px;
+        height: 34px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: #d8e2ef;
+        font-size: 13px;
+        font-weight: 700;
       }
 
       .upload-fieldset {
@@ -108,6 +138,133 @@
         word-break: break-word;
       }
 
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .ghost-button,
+      .danger-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        font-weight: 700;
+      }
+
+      .ghost-button {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .danger-button {
+        background: rgba(220, 38, 38, 0.14);
+        border-color: rgba(248, 113, 113, 0.28);
+        color: #ffd3d3;
+      }
+
+      .section-status {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .admin-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .admin-list__grid {
+        display: grid;
+        gap: 12px;
+        padding: 0 22px 22px;
+      }
+
+      .admin-item {
+        display: grid;
+        gap: 14px;
+        padding: 16px;
+        border: 1px solid var(--line-soft);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .admin-item__top {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 14px;
+        align-items: start;
+      }
+
+      .admin-item__thumb {
+        width: 72px;
+        height: 72px;
+        border: 1px solid var(--line-soft);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        object-fit: cover;
+      }
+
+      .admin-item__body strong,
+      .admin-item__body span {
+        display: block;
+      }
+
+      .admin-item__body strong {
+        font-size: 14px;
+      }
+
+      .admin-item__body span {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+        word-break: break-word;
+      }
+
+      .admin-item__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .item-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .item-button--delete {
+        border-color: rgba(248, 113, 113, 0.28);
+        background: rgba(220, 38, 38, 0.12);
+        color: #ffd3d3;
+      }
+
+      .admin-empty-card {
+        padding: 18px;
+        border: 1px dashed rgba(255, 255, 255, 0.14);
+        border-radius: 18px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .admin-preview__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
       .admin-tip {
         margin: 0;
         padding: 14px 16px;
@@ -144,6 +301,62 @@
         color: var(--text);
         font-size: 12px;
       }
+
+      .admin-banner {
+        margin-top: 18px;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        color: #dfe8f4;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .admin-note code,
+      .admin-tip code,
+      .admin-banner code,
+      .admin-step code {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      }
+
+      @media (max-width: 1023px) {
+        .admin-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .admin-preview {
+          position: static;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .admin-card__header-row {
+          flex-direction: column;
+        }
+
+        .admin-item__top {
+          grid-template-columns: 1fr;
+        }
+
+        .admin-item__thumb {
+          width: 100%;
+          height: 180px;
+        }
+
+        .form-actions,
+        .admin-preview__actions,
+        .admin-item__actions {
+          grid-template-columns: 1fr;
+        }
+
+        .primary-button,
+        .ghost-button,
+        .danger-button,
+        .item-button {
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body class="admin-page">
@@ -152,30 +365,42 @@
         <p class="admin-hero__eyebrow">Static CMS Workflow</p>
         <h1>Portfolio Admin Panel</h1>
         <p>
-          This works like a simple upload system, but stays fully static for GitHub + Netlify. Select an
-          image, review the preview, generate JSON, then paste it into <code>data.json</code>.
+          This admin panel behaves like a mini CMS without a backend. Your content is saved in
+          <code>localStorage</code> under <code>portfolioData</code>, so refreshes keep your work until you
+          export JSON.
         </p>
         <div class="admin-hero__actions">
           <a class="secondary-button admin-hero__link" href="./index.html">View Portfolio</a>
         </div>
         <div class="admin-steps">
-          <div class="admin-step"><strong>1</strong><span>Select an image file</span></div>
-          <div class="admin-step"><strong>2</strong><span>Fill the remaining fields</span></div>
-          <div class="admin-step"><strong>3</strong><span>Copy generated JSON into <code>data.json</code></span></div>
+          <div class="admin-step"><strong>1</strong><span>Add or edit content in any section</span></div>
+          <div class="admin-step"><strong>2</strong><span>Changes autosave to <code>localStorage</code></span></div>
+          <div class="admin-step"><strong>3</strong><span>Copy the generated JSON into <code>data.json</code></span></div>
         </div>
+        <p class="admin-banner">
+          File selection is only for preview and filename detection. After selecting an image, manually place
+          that file into <code>poster/</code>, <code>reels/</code>, or <code>projects/</code>.
+        </p>
       </section>
 
       <section class="admin-layout">
         <div class="admin-forms">
           <article class="admin-card">
             <div class="admin-card__header">
-              <p class="content-panel__eyebrow">Add Poster</p>
-              <h2>Posters</h2>
+              <div class="admin-card__header-row">
+                <div>
+                  <p class="content-panel__eyebrow">Manage Posters</p>
+                  <h2>Posters</h2>
+                </div>
+                <span class="admin-count" id="poster-count">0</span>
+              </div>
             </div>
             <form class="admin-form" id="poster-form">
+              <input type="hidden" name="editingIndex" value="" />
+
               <div class="upload-fieldset">
                 <label class="upload-label">
-                  <input type="file" name="imageFile" accept="image/*" required />
+                  <input type="file" name="imageFile" accept="image/*" />
                   <span>Select Poster Image</span>
                 </label>
                 <div class="upload-meta">
@@ -189,8 +414,7 @@
                   </div>
                 </div>
                 <p class="upload-note">
-                  After selecting the image, manually place the file into the correct folder:
-                  <code>poster/</code>
+                  After selecting the image, manually place the file into <code>poster/</code>.
                 </p>
               </div>
 
@@ -199,20 +423,33 @@
                 <textarea name="caption" rows="4" placeholder="Poster caption" required></textarea>
               </label>
 
-              <button class="primary-button" type="submit">Add Poster</button>
+              <div class="form-actions">
+                <button class="primary-button" type="submit" data-submit-label>Add Poster</button>
+                <button class="ghost-button" type="button" data-cancel-edit hidden>Cancel Edit</button>
+              </div>
+              <p class="section-status" data-status>Ready to add a new poster.</p>
             </form>
-            <div class="admin-list" id="poster-list"></div>
+            <div class="admin-list">
+              <div class="admin-list__grid" id="poster-list"></div>
+            </div>
           </article>
 
           <article class="admin-card">
             <div class="admin-card__header">
-              <p class="content-panel__eyebrow">Add Reel</p>
-              <h2>Reels</h2>
+              <div class="admin-card__header-row">
+                <div>
+                  <p class="content-panel__eyebrow">Manage Reels</p>
+                  <h2>Reels</h2>
+                </div>
+                <span class="admin-count" id="reel-count">0</span>
+              </div>
             </div>
             <form class="admin-form" id="reel-form">
+              <input type="hidden" name="editingIndex" value="" />
+
               <div class="upload-fieldset">
                 <label class="upload-label">
-                  <input type="file" name="thumbnailFile" accept="image/*" required />
+                  <input type="file" name="thumbnailFile" accept="image/*" />
                   <span>Select Thumbnail Image</span>
                 </label>
                 <div class="upload-meta">
@@ -226,8 +463,7 @@
                   </div>
                 </div>
                 <p class="upload-note">
-                  After selecting the image, manually place the file into the correct folder:
-                  <code>reels/</code>
+                  After selecting the image, manually place the file into <code>reels/</code>.
                 </p>
               </div>
 
@@ -249,20 +485,33 @@
                 </select>
               </label>
 
-              <button class="primary-button" type="submit">Add Reel</button>
+              <div class="form-actions">
+                <button class="primary-button" type="submit" data-submit-label>Add Reel</button>
+                <button class="ghost-button" type="button" data-cancel-edit hidden>Cancel Edit</button>
+              </div>
+              <p class="section-status" data-status>Ready to add a new reel.</p>
             </form>
-            <div class="admin-list" id="reel-list"></div>
+            <div class="admin-list">
+              <div class="admin-list__grid" id="reel-list"></div>
+            </div>
           </article>
 
           <article class="admin-card">
             <div class="admin-card__header">
-              <p class="content-panel__eyebrow">Add Dev Project</p>
-              <h2>Projects</h2>
+              <div class="admin-card__header-row">
+                <div>
+                  <p class="content-panel__eyebrow">Manage Projects</p>
+                  <h2>Projects</h2>
+                </div>
+                <span class="admin-count" id="project-count">0</span>
+              </div>
             </div>
             <form class="admin-form" id="project-form">
+              <input type="hidden" name="editingIndex" value="" />
+
               <div class="upload-fieldset">
                 <label class="upload-label">
-                  <input type="file" name="imageFile" accept="image/*" required />
+                  <input type="file" name="imageFile" accept="image/*" />
                   <span>Select Project Image</span>
                 </label>
                 <div class="upload-meta">
@@ -276,8 +525,7 @@
                   </div>
                 </div>
                 <p class="upload-note">
-                  After selecting the image, manually place the file into the correct folder:
-                  <code>projects/</code>
+                  After selecting the image, manually place the file into <code>projects/</code>.
                 </p>
               </div>
 
@@ -301,9 +549,15 @@
                 <input type="url" name="githubLink" placeholder="https://github.com/..." required />
               </label>
 
-              <button class="primary-button" type="submit">Add Project</button>
+              <div class="form-actions">
+                <button class="primary-button" type="submit" data-submit-label>Add Project</button>
+                <button class="ghost-button" type="button" data-cancel-edit hidden>Cancel Edit</button>
+              </div>
+              <p class="section-status" data-status>Ready to add a new project.</p>
             </form>
-            <div class="admin-list" id="project-list"></div>
+            <div class="admin-list">
+              <div class="admin-list__grid" id="project-list"></div>
+            </div>
           </article>
         </div>
 
@@ -314,6 +568,8 @@
           </div>
           <div class="admin-preview__actions">
             <button class="primary-button" id="generate-json" type="button">Generate JSON</button>
+            <button class="ghost-button" id="copy-json" type="button">Copy JSON</button>
+            <button class="danger-button" id="clear-storage" type="button">Clear Local Data</button>
           </div>
           <pre class="json-preview" id="json-preview">{
   "posters": [],
@@ -321,29 +577,66 @@
   "projects": []
 }</pre>
           <p class="admin-note">
-            No real upload happens here. The selected file name is used in JSON only. After selecting the
-            image, manually place the file into the correct folder: <code>poster/</code>, <code>reels/</code>,
-            or <code>projects/</code>.
+            JSON is generated from <code>localStorage["portfolioData"]</code>. Copy it, paste into
+            <code>data.json</code>, then push to GitHub so Netlify can deploy the updated content.
           </p>
-          <p class="admin-tip">
-            Beginner-friendly rule: if the preview looks right and the JSON filename matches your image file,
-            you can paste the JSON into <code>data.json</code>.
+          <p class="admin-tip" id="json-status">
+            Local data autosaves after every add, edit, and delete action.
           </p>
         </aside>
       </section>
     </main>
 
     <script>
-      const emptyData = {
+      const STORAGE_KEY = "portfolioData";
+      const defaultData = {
         posters: [],
         reels: [],
         projects: []
       };
 
-      const adminState = {
-        posters: [],
-        reels: [],
-        projects: []
+      const state = loadData();
+
+      const sectionConfig = {
+        posters: {
+          formId: "poster-form",
+          listId: "poster-list",
+          countId: "poster-count",
+          statusReady: "Ready to add a new poster.",
+          statusEditing: "Editing poster. Save to update local data.",
+          submitAdd: "Add Poster",
+          submitEdit: "Save Poster",
+          folder: "poster/",
+          getTitle: (item, index) => item.image || `Poster ${index + 1}`,
+          getMeta: (item) => item.caption || "No caption",
+          getThumb: (item) => item.image ? `poster/${item.image}` : ""
+        },
+        reels: {
+          formId: "reel-form",
+          listId: "reel-list",
+          countId: "reel-count",
+          statusReady: "Ready to add a new reel.",
+          statusEditing: "Editing reel. Save to update local data.",
+          submitAdd: "Add Reel",
+          submitEdit: "Save Reel",
+          folder: "reels/",
+          getTitle: (item, index) => item.thumbnail || `Reel ${index + 1}`,
+          getMeta: (item) => `${item.platform || "Platform"} | ${item.videoLink || "No link"}`,
+          getThumb: (item) => item.thumbnail ? `reels/${item.thumbnail}` : ""
+        },
+        projects: {
+          formId: "project-form",
+          listId: "project-list",
+          countId: "project-count",
+          statusReady: "Ready to add a new project.",
+          statusEditing: "Editing project. Save to update local data.",
+          submitAdd: "Add Project",
+          submitEdit: "Save Project",
+          folder: "projects/",
+          getTitle: (item, index) => item.title || `Project ${index + 1}`,
+          getMeta: (item) => `${item.techStack || "No tech stack"} | ${item.image || "No image"}`,
+          getThumb: (item) => item.image ? `projects/${item.image}` : ""
+        }
       };
 
       function normalizeData(data) {
@@ -354,198 +647,355 @@
         };
       }
 
-      function formatJson(data) {
-        return JSON.stringify(data, null, 2);
+      function loadData() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? normalizeData(JSON.parse(raw)) : structuredClone(defaultData);
+        } catch (error) {
+          return structuredClone(defaultData);
+        }
+      }
+
+      function saveData() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function formatJson() {
+        return JSON.stringify(state, null, 2);
+      }
+
+      function setJsonStatus(message) {
+        const status = document.getElementById("json-status");
+        if (status) {
+          status.textContent = message;
+        }
       }
 
       function updateJsonPreview() {
-        document.getElementById("json-preview").textContent = formatJson(adminState);
+        document.getElementById("json-preview").textContent = formatJson();
       }
 
-      function renderList(targetId, items, mapItem) {
-        const target = document.getElementById(targetId);
-        if (!target) {
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function getFormRefs(section) {
+        const form = document.getElementById(sectionConfig[section].formId);
+        return {
+          form,
+          editInput: form.elements.editingIndex,
+          fileInput: form.querySelector('input[type="file"]'),
+          fileLabel: form.querySelector("[data-file-label]"),
+          previewWrap: form.querySelector("[data-preview]"),
+          previewImage: form.querySelector("[data-preview-image]"),
+          previewName: form.querySelector("[data-preview-name]"),
+          cancelButton: form.querySelector("[data-cancel-edit]"),
+          submitButton: form.querySelector("[data-submit-label]"),
+          status: form.querySelector("[data-status]")
+        };
+      }
+
+      function isEditing(section) {
+        const { editInput } = getFormRefs(section);
+        return editInput.value !== "";
+      }
+
+      function setPreviewState(section, fileName = "", previewUrl = "") {
+        const refs = getFormRefs(section);
+        if (!fileName) {
+          refs.fileLabel.textContent = "No image selected";
+          refs.previewWrap.classList.remove("is-visible");
+          refs.previewImage.src = "";
+          refs.previewName.textContent = "";
+          refs.fileInput.dataset.selectedName = "";
           return;
         }
+
+        refs.fileLabel.textContent = `Selected file: ${fileName}`;
+        refs.previewWrap.classList.add("is-visible");
+        refs.previewName.textContent = fileName;
+        refs.previewImage.src = previewUrl || refs.previewImage.src || "";
+        refs.fileInput.dataset.selectedName = fileName;
+      }
+
+      function resetForm(section) {
+        const refs = getFormRefs(section);
+        refs.form.reset();
+        refs.editInput.value = "";
+        refs.cancelButton.hidden = true;
+        refs.submitButton.textContent = sectionConfig[section].submitAdd;
+        refs.status.textContent = sectionConfig[section].statusReady;
+        setPreviewState(section);
+      }
+
+      function setupFileInput(section) {
+        const refs = getFormRefs(section);
+        refs.fileInput.addEventListener("change", () => {
+          const file = refs.fileInput.files && refs.fileInput.files[0];
+          if (!file) {
+            if (!isEditing(section)) {
+              setPreviewState(section);
+            }
+            return;
+          }
+
+          const objectUrl = URL.createObjectURL(file);
+          setPreviewState(section, file.name, objectUrl);
+        });
+
+        refs.cancelButton.addEventListener("click", () => {
+          resetForm(section);
+        });
+      }
+
+      function getItemDataFromForm(section) {
+        const refs = getFormRefs(section);
+        if (section === "posters") {
+          const selectedName = refs.fileInput.dataset.selectedName || "";
+          return {
+            image: selectedName,
+            caption: refs.form.elements.caption.value.trim()
+          };
+        }
+
+        if (section === "reels") {
+          const selectedName = refs.fileInput.dataset.selectedName || "";
+          return {
+            thumbnail: selectedName,
+            videoLink: refs.form.elements.videoLink.value.trim(),
+            platform: refs.form.elements.platform.value.trim()
+          };
+        }
+
+        const selectedName = refs.fileInput.dataset.selectedName || "";
+        return {
+          image: selectedName,
+          title: refs.form.elements.title.value.trim(),
+          description: refs.form.elements.description.value.trim(),
+          techStack: refs.form.elements.techStack.value.trim(),
+          githubLink: refs.form.elements.githubLink.value.trim()
+        };
+      }
+
+      function validateItem(section, item, editingIndex) {
+        if (section === "posters") {
+          return Boolean(item.caption && (item.image || editingIndex !== ""));
+        }
+
+        if (section === "reels") {
+          return Boolean(item.videoLink && item.platform && (item.thumbnail || editingIndex !== ""));
+        }
+
+        return Boolean(
+          item.title &&
+            item.description &&
+            item.techStack &&
+            item.githubLink &&
+            (item.image || editingIndex !== "")
+        );
+      }
+
+      function applyEditFallback(section, item, editingIndex) {
+        if (editingIndex === "") {
+          return item;
+        }
+
+        const existing = state[section][Number(editingIndex)];
+        if (!existing) {
+          return item;
+        }
+
+        if (section === "posters" && !item.image) {
+          item.image = existing.image;
+        }
+
+        if (section === "reels" && !item.thumbnail) {
+          item.thumbnail = existing.thumbnail;
+        }
+
+        if (section === "projects" && !item.image) {
+          item.image = existing.image;
+        }
+
+        return item;
+      }
+
+      function updateSectionUi(section) {
+        const config = sectionConfig[section];
+        const list = document.getElementById(config.listId);
+        const count = document.getElementById(config.countId);
+        const items = state[section];
+
+        count.textContent = String(items.length);
 
         if (!items.length) {
-          target.innerHTML = '<p class="admin-empty">No entries added yet.</p>';
+          list.innerHTML = `<div class="admin-empty-card">No ${section} added yet. Use the form above to create your first item.</div>`;
           return;
         }
 
-        target.innerHTML = items
-          .map((item, index) => {
-            const mapped = mapItem(item);
-            return `
-              <div class="admin-list__item">
-                <strong>${index + 1}. ${mapped.title}</strong>
-                <p>${mapped.meta}</p>
-              </div>
-            `;
-          })
+        list.innerHTML = items
+          .map(
+            (item, index) => `
+              <article class="admin-item">
+                <div class="admin-item__top">
+                  <img class="admin-item__thumb" src="${escapeHtml(config.getThumb(item))}" alt="${escapeHtml(config.getTitle(item, index))}">
+                  <div class="admin-item__body">
+                    <strong>${escapeHtml(config.getTitle(item, index))}</strong>
+                    <span>${escapeHtml(config.getMeta(item))}</span>
+                    ${section === "projects" ? `<span>${escapeHtml(item.description || "")}</span>` : ""}
+                    ${section === "posters" ? `<span>${escapeHtml(item.caption || "")}</span>` : ""}
+                  </div>
+                </div>
+                <div class="admin-item__actions">
+                  <button class="item-button" type="button" data-action="edit" data-section="${section}" data-index="${index}">Edit</button>
+                  <button class="item-button item-button--delete" type="button" data-action="delete" data-section="${section}" data-index="${index}">Delete</button>
+                </div>
+              </article>
+            `
+          )
           .join("");
       }
 
-      function renderLists() {
-        renderList("poster-list", adminState.posters, (item) => ({
-          title: item.image,
-          meta: item.caption
-        }));
-
-        renderList("reel-list", adminState.reels, (item) => ({
-          title: item.thumbnail,
-          meta: `${item.platform} • ${item.videoLink}`
-        }));
-
-        renderList("project-list", adminState.projects, (item) => ({
-          title: item.title,
-          meta: `${item.techStack} • ${item.image}`
-        }));
-      }
-
-      function setupFilePicker(form) {
-        const input = form.querySelector('input[type="file"]');
-        const label = form.querySelector("[data-file-label]");
-        const preview = form.querySelector("[data-preview]");
-        const previewImage = form.querySelector("[data-preview-image]");
-        const previewName = form.querySelector("[data-preview-name]");
-
-        function resetPreview() {
-          label.textContent = "No image selected";
-          preview.classList.remove("is-visible");
-          previewImage.src = "";
-          previewName.textContent = "";
-        }
-
-        input.addEventListener("change", () => {
-          const file = input.files && input.files[0];
-          if (!file) {
-            resetPreview();
-            return;
-          }
-
-          label.textContent = `Selected file: ${file.name}`;
-          previewImage.src = URL.createObjectURL(file);
-          previewName.textContent = file.name;
-          preview.classList.add("is-visible");
-        });
-
-        form.addEventListener("reset", () => {
-          setTimeout(resetPreview, 0);
-        });
-
-        resetPreview();
-        return input;
-      }
-
-      function addPoster(form, fileInput) {
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const file = fileInput.files && fileInput.files[0];
-          const caption = form.elements.caption.value.trim();
-
-          if (!file || !caption) {
-            return;
-          }
-
-          adminState.posters.push({
-            image: file.name,
-            caption
-          });
-
-          form.reset();
-          renderLists();
-          updateJsonPreview();
-        });
-      }
-
-      function addReel(form, fileInput) {
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const file = fileInput.files && fileInput.files[0];
-          const videoLink = form.elements.videoLink.value.trim();
-          const platform = form.elements.platform.value.trim();
-
-          if (!file || !videoLink || !platform) {
-            return;
-          }
-
-          adminState.reels.push({
-            thumbnail: file.name,
-            videoLink,
-            platform
-          });
-
-          form.reset();
-          renderLists();
-          updateJsonPreview();
-        });
-      }
-
-      function addProject(form, fileInput) {
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const file = fileInput.files && fileInput.files[0];
-          const title = form.elements.title.value.trim();
-          const description = form.elements.description.value.trim();
-          const techStack = form.elements.techStack.value.trim();
-          const githubLink = form.elements.githubLink.value.trim();
-
-          if (!file || !title || !description || !techStack || !githubLink) {
-            return;
-          }
-
-          adminState.projects.push({
-            image: file.name,
-            title,
-            description,
-            techStack,
-            githubLink
-          });
-
-          form.reset();
-          renderLists();
-          updateJsonPreview();
-        });
-      }
-
-      async function loadExistingData() {
-        try {
-          const response = await fetch("./data.json", { cache: "no-store" });
-          if (!response.ok) {
-            throw new Error("Failed to load data.json");
-          }
-
-          const data = normalizeData(await response.json());
-          adminState.posters = [...data.posters];
-          adminState.reels = [...data.reels];
-          adminState.projects = [...data.projects];
-        } catch (error) {
-          adminState.posters = [...emptyData.posters];
-          adminState.reels = [...emptyData.reels];
-          adminState.projects = [...emptyData.projects];
-        }
-
-        renderLists();
+      function renderAll() {
+        updateSectionUi("posters");
+        updateSectionUi("reels");
+        updateSectionUi("projects");
         updateJsonPreview();
       }
 
-      const posterForm = document.getElementById("poster-form");
-      const reelForm = document.getElementById("reel-form");
-      const projectForm = document.getElementById("project-form");
-      const generateButton = document.getElementById("generate-json");
+      function enterEditMode(section, index) {
+        const item = state[section][index];
+        if (!item) {
+          return;
+        }
 
-      const posterFileInput = setupFilePicker(posterForm);
-      const reelFileInput = setupFilePicker(reelForm);
-      const projectFileInput = setupFilePicker(projectForm);
+        const refs = getFormRefs(section);
+        refs.editInput.value = String(index);
+        refs.cancelButton.hidden = false;
+        refs.submitButton.textContent = sectionConfig[section].submitEdit;
+        refs.status.textContent = sectionConfig[section].statusEditing;
 
-      addPoster(posterForm, posterFileInput);
-      addReel(reelForm, reelFileInput);
-      addProject(projectForm, projectFileInput);
+        if (section === "posters") {
+          refs.form.elements.caption.value = item.caption || "";
+          setPreviewState(section, item.image || "", item.image ? `poster/${item.image}` : "");
+        }
 
-      generateButton.addEventListener("click", updateJsonPreview);
+        if (section === "reels") {
+          refs.form.elements.videoLink.value = item.videoLink || "";
+          refs.form.elements.platform.value = item.platform || "YouTube";
+          setPreviewState(section, item.thumbnail || "", item.thumbnail ? `reels/${item.thumbnail}` : "");
+        }
 
-      loadExistingData();
+        if (section === "projects") {
+          refs.form.elements.title.value = item.title || "";
+          refs.form.elements.description.value = item.description || "";
+          refs.form.elements.techStack.value = item.techStack || "";
+          refs.form.elements.githubLink.value = item.githubLink || "";
+          setPreviewState(section, item.image || "", item.image ? `projects/${item.image}` : "");
+        }
+
+        refs.form.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function deleteItem(section, index) {
+        state[section].splice(index, 1);
+        saveData();
+        renderAll();
+        resetForm(section);
+        setJsonStatus(`Deleted ${section.slice(0, -1)} and saved changes to localStorage.`);
+      }
+
+      function handleFormSubmit(section) {
+        const refs = getFormRefs(section);
+        refs.form.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const editingIndex = refs.editInput.value;
+          let item = getItemDataFromForm(section);
+          item = applyEditFallback(section, item, editingIndex);
+
+          if (!validateItem(section, item, editingIndex)) {
+            refs.status.textContent = "Complete all required fields and keep an image filename available.";
+            return;
+          }
+
+          if (editingIndex === "") {
+            state[section].push(item);
+            setJsonStatus(`Added new ${section.slice(0, -1)} and saved it to localStorage.`);
+          } else {
+            state[section][Number(editingIndex)] = item;
+            setJsonStatus(`Updated ${section.slice(0, -1)} and saved changes to localStorage.`);
+          }
+
+          saveData();
+          renderAll();
+          resetForm(section);
+        });
+      }
+
+      function bindListActions(section) {
+        const list = document.getElementById(sectionConfig[section].listId);
+        list.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-action]");
+          if (!button) {
+            return;
+          }
+
+          const index = Number(button.dataset.index);
+          if (button.dataset.action === "edit") {
+            enterEditMode(section, index);
+          }
+
+          if (button.dataset.action === "delete") {
+            deleteItem(section, index);
+          }
+        });
+      }
+
+      async function copyJson() {
+        const json = formatJson();
+
+        try {
+          await navigator.clipboard.writeText(json);
+          setJsonStatus("JSON copied. Paste it into data.json and push to GitHub.");
+        } catch (error) {
+          setJsonStatus("Copy failed. Select the JSON preview manually and copy it.");
+        }
+      }
+
+      function clearStorage() {
+        localStorage.removeItem(STORAGE_KEY);
+        state.posters = [];
+        state.reels = [];
+        state.projects = [];
+        renderAll();
+        resetForm("posters");
+        resetForm("reels");
+        resetForm("projects");
+        setJsonStatus("Local storage cleared. The admin panel is back to an empty state.");
+      }
+
+      document.getElementById("generate-json").addEventListener("click", () => {
+        updateJsonPreview();
+        setJsonStatus("JSON preview refreshed from localStorage data.");
+      });
+
+      document.getElementById("copy-json").addEventListener("click", copyJson);
+      document.getElementById("clear-storage").addEventListener("click", clearStorage);
+
+      ["posters", "reels", "projects"].forEach((section) => {
+        setupFileInput(section);
+        handleFormSubmit(section);
+        bindListActions(section);
+        resetForm(section);
+      });
+
+      renderAll();
     </script>
   </body>
 </html>
