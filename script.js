@@ -79,28 +79,77 @@ const highlights = [
   { id: "lr", label: "LR", src: "assets/LR.jpg", fit: "cover", scale: "story-item__image--full" }
 ];
 
-const defaultPortfolioData = {
-  posters: [],
-  reels: [],
-  projects: []
-};
+function art(palette, glow) {
+  return `linear-gradient(150deg, rgba(5,7,12,.24), rgba(5,7,12,.72)), radial-gradient(circle at top right, ${glow} 0%, transparent 42%), ${palette}`;
+}
 
-const galleryLabels = {
-  posters: "Poster",
-  reels: "Reel",
-  projects: "Project"
-};
+const posts = [
+  { id: 1, title: "Onam Offer Poster", label: "Social Media Poster", description: "Festive campaign visual designed to feel bright, local, and mobile-first.", meta: "Photoshop • Promo Design • Social Media", src: "poster/Poster 1.png" },
+  { id: 2, title: "Kargil Tribute", label: "Awareness Poster", description: "A bold tribute visual built around contrast, silhouette, and strong typography.", meta: "Photoshop • Tribute Design • Poster", src: "poster/Poster 2.png" },
+  { id: 3, title: "We Are Hiring", label: "Brand Promotion Poster", description: "A recruitment visual designed to grab attention quickly and communicate clearly.", meta: "Photoshop • Hiring Creative • Brand Promo", src: "poster/Poster 3.png" },
+  { id: 4, title: "Graphic Design Promo", label: "Service Promotion Poster", description: "A personal branding poster created to promote design and editing services.", meta: "Photoshop • Service Promo • Personal Brand", src: "poster/Poster 4.png" },
+  { id: 5, title: "Special Offer Visual", label: "Product Promotion Poster", description: "A clean promotional creative made for offers, sales, and product-based campaigns.", meta: "Photoshop • Offer Design • Social Media", src: "poster/Poster 5.png" },
+  { id: 6, title: "Missile Man Tribute", label: "Inspirational Poster", description: "A concept poster inspired by vision, ambition, and iconic legacy-driven storytelling.", meta: "Photoshop • Tribute Design • Concept Poster", src: "poster/Poster 6.png" },
+  { id: 7, title: "Custom Name Slip Poster", label: "Creative Product Poster", description: "A playful product visual designed for social media promotion and fast engagement.", meta: "Photoshop • Product Promo • Creative Design", src: "poster/Poster 7.png" },
+  { id: 8, title: "Olympics Opening Poster", label: "Event Poster", description: "An event-based visual designed around timing, excitement, and announcement clarity.", meta: "Photoshop • Event Design • Social Media", src: "poster/Poster 8.png" },
+  { id: 9, title: "Grand Opening Teaser", label: "Launch Promotion Poster", description: "A launch-style teaser poster built to create curiosity and pre-opening attention.", meta: "Photoshop • Launch Promo • Branding", src: "poster/Poster 9.png" },
+  { id: 10, title: "Pongal Celebration Poster", label: "Festive Promo Poster", description: "A seasonal celebration poster created with warm tones and a clean festive layout.", meta: "Photoshop • Festival Design • Promo Creative", src: "poster/Poster 10.png" },
+  { id: 11, title: "Shape Your Body", label: "Fitness Promotion Poster", description: "A bold fitness poster focused on energy, typography, and quick visual impact.", meta: "Photoshop • Fitness Promo • Social Media", src: "poster/Poster 11.png" },
+  { id: 12, title: "Custom Name Slips Ad", label: "Product Promotion Poster", description: "A modern promo visual built for product marketing and audience attention on mobile.", meta: "Photoshop • Product Ad • Social Media", src: "poster/Poster 12.png" },
+  { id: 13, title: "Sticker / Print Promo", label: "Print Design Poster", description: "A promotional creative designed to showcase print products in a clean and friendly way.", meta: "Photoshop • Print Promo • Product Design", src: "poster/Poster 13.png" },
+  { id: 14, title: "Break the Chain", label: "Awareness Poster", description: "A message-driven awareness poster built around contrast, symbolism, and urgency.", meta: "Photoshop • Awareness Design • Campaign Poster", src: "poster/Poster 14.jpg" },
+  { id: 15, title: "TV App Promo Visual", label: "Digital Product Poster", description: "A sleek promotional visual created for a digital entertainment or app-based product.", meta: "Photoshop • Product Promo • Digital Creative", src: "poster/Poster 15.png" }
+];
 
-const state = {
-  activeTab: "posters",
-  activePage: "home",
-  galleryData: { ...defaultPortfolioData }
-};
+const reels = [
+  { id: 101, title: "Launch Teaser Cut", label: "Promo Edit", badge: "0:21", accent: art("linear-gradient(135deg, #0a1220, #2149a2 48%, #f97316)", "rgba(249,115,22,.36)") },
+  { id: 102, title: "Cinematic Bike Reel", label: "Motion Edit", badge: "0:34", accent: art("linear-gradient(135deg, #081118, #153349 48%, #48b6ff)", "rgba(72,182,255,.32)") },
+  { id: 103, title: "Event Recap", label: "Short Video", badge: "0:27", accent: art("linear-gradient(135deg, #120f10, #76431c 46%, #f1c08e)", "rgba(241,192,142,.28)") },
+  { id: 104, title: "Restaurant Promo", label: "Social Reel", badge: "0:18", accent: art("linear-gradient(135deg, #0f1510, #14532d 48%, #74d9aa)", "rgba(116,217,170,.28)") },
+  { id: 105, title: "Fashion Snippet", label: "Cinematic Edit", badge: "0:15", accent: art("linear-gradient(135deg, #171514, #6b6661 42%, #f0ece8)", "rgba(240,236,232,.26)") },
+  { id: 106, title: "Brand Trailer", label: "Motion Reel", badge: "0:29", accent: art("linear-gradient(135deg, #170c20, #5a2fa0 44%, #cab6ff)", "rgba(202,182,255,.28)") }
+];
 
+const collabs = [
+  { id: 201, title: "Music Cover Drop", label: "With Ayan + Rafi", accent: art("linear-gradient(135deg, #101828, #7c3aed 52%, #f59e0b)", "rgba(245,158,11,.28)") },
+  { id: 202, title: "Campus Fest Campaign", label: "Team Visuals", accent: art("linear-gradient(135deg, #0f172a, #be185d 46%, #fb7185)", "rgba(251,113,133,.28)") },
+  { id: 203, title: "Street Film Posters", label: "Friend Collab", accent: art("linear-gradient(135deg, #171717, #44403c 45%, #facc15)", "rgba(250,204,21,.26)") },
+  { id: 204, title: "Creator Kit", label: "Agency Assist", accent: art("linear-gradient(135deg, #0a0f1d, #2563eb 48%, #22d3ee)", "rgba(34,211,238,.26)") },
+  { id: 205, title: "Merch Drop Visuals", label: "Design Pairing", accent: art("linear-gradient(135deg, #180d14, #db2777 48%, #f9a8d4)", "rgba(249,168,212,.26)") },
+  { id: 206, title: "Aftermovie Frames", label: "Editor Circle", accent: art("linear-gradient(135deg, #0b1220, #0f766e 48%, #99f6e4)", "rgba(153,246,228,.24)") }
+];
+
+const galleryData = { posts, reels, collabs };
+
+let activeTab = "posts";
+let activePage = "home";
+
+const desktopNavRoot = document.getElementById("desktop-nav");
+const mobileNavRoot = document.getElementById("mobile-nav");
+const highlightsRoot = document.getElementById("highlights-list");
+const galleryRoot = document.getElementById("gallery");
+const tabButtons = Array.from(document.querySelectorAll(".tab-button"));
+const storyStrip = document.getElementById("highlights-list");
+const tabStrip = document.querySelector(".tab-strip");
+const contentSections = document.getElementById("content-sections");
+const contentPanels = Array.from(document.querySelectorAll(".content-panel"));
+const overlay = document.getElementById("overlay");
+const linksOverlay = document.getElementById("links-overlay");
+const linksList = document.getElementById("links-list");
+const modalTitle = document.getElementById("modal-title");
+const modalSubtitle = document.getElementById("modal-subtitle");
+const modalBody = document.getElementById("modal-body");
+const profileHero = document.querySelector(".profile-hero");
+const bioArea = document.querySelector(".bio-area");
+const actionRow = document.querySelector(".action-row");
+const statsRow = document.querySelector(".stats-row");
+const statDesigns = document.getElementById("stat-designs");
+const statEdits = document.getElementById("stat-edits");
+const statConcepts = document.getElementById("stat-concepts");
+const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 let revealObserver;
 let hasAnimatedStats = false;
 let parallaxFrame = 0;
-const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function iconSvg(type) {
   const paths = {
@@ -113,77 +162,19 @@ function iconSvg(type) {
     instagram: '<rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4.1"></circle><circle cx="17.4" cy="6.7" r="1.1" class="icon__fill"></circle>',
     whatsapp: '<path d="M12 20a8 8 0 1 0-4.1-1.13L4.5 20l1.2-3.23A8 8 0 0 0 12 20z"></path><path d="M9.15 8.9c.18-.4.37-.4.55-.4h.47c.14 0 .36.05.55.45.18.4.62 1.53.68 1.64.05.12.09.26 0 .4-.09.14-.14.23-.28.37-.14.14-.29.31-.42.41-.14.11-.28.23-.12.46.16.23.72 1.18 1.55 1.9 1.07.92 1.97 1.2 2.25 1.34.28.14.44.12.6-.07.16-.18.69-.8.87-1.07.18-.28.37-.23.62-.14.25.1 1.58.75 1.85.89.28.14.46.21.53.32.07.12.07.66-.16 1.3-.23.64-1.33 1.22-1.84 1.3-.48.08-1.1.11-1.78-.11-.41-.14-.95-.31-1.65-.61-2.9-1.25-4.79-4.33-4.94-4.54-.14-.2-1.18-1.58-1.18-3.01 0-1.43.75-2.14 1.02-2.44"></path>',
     quote: '<path d="M9.2 9.2H6.8a2.3 2.3 0 0 0-2.3 2.3v1.4a2.3 2.3 0 0 0 2.3 2.3h1.8v-1.8H7.4a.7.7 0 0 1-.7-.7v-1.2c0-.39.31-.7.7-.7h1.8z"></path><path d="M17.2 9.2h-2.4a2.3 2.3 0 0 0-2.3 2.3v1.4a2.3 2.3 0 0 0 2.3 2.3h1.8v-1.8h-1.2a.7.7 0 0 1-.7-.7v-1.2c0-.39.31-.7.7-.7h1.8z"></path>',
+    plus: '<path d="M12 5v14M5 12h14"></path>',
+    chart: '<rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 16V11M12 16V8M16 16V13"></path>',
     usercard: '<rect x="4" y="5" width="16" height="14" rx="2.5"></rect><circle cx="9" cy="10" r="2"></circle><path d="M6.5 15c.7-1.45 1.53-2.17 2.5-2.17.97 0 1.8.72 2.5 2.17"></path><path d="M14 9h3.5M14 12h3.5M14 15h2.2"></path>'
   };
 
   return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${paths[type]}</svg>`;
 }
 
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function getPosterImagePath(filename) {
-  return `poster/${filename}`;
-}
-
-function getReelThumbnailPath(filename) {
-  return `reels/${filename}`;
-}
-
-function getProjectImagePath(filename) {
-  return `projects/${filename}`;
-}
-
-function normalizePortfolioData(data) {
-  return {
-    posters: Array.isArray(data?.posters) ? data.posters : [],
-    reels: Array.isArray(data?.reels) ? data.reels : [],
-    projects: Array.isArray(data?.projects) ? data.projects : []
-  };
-}
-
-async function loadPortfolioData() {
-  try {
-    const response = await fetch("./data.json", { cache: "no-store" });
-    if (!response.ok) {
-      throw new Error(`Failed to load data.json: ${response.status}`);
-    }
-
-    return normalizePortfolioData(await response.json());
-  } catch (error) {
-    console.error(error);
-    return { ...defaultPortfolioData };
-  }
-}
-
-function getEmbedUrl(link, platform) {
-  if (!link) {
-    return "";
-  }
-
-  if (platform === "Instagram") {
-    const cleanLink = link.replace(/\/+$/, "");
-    return `${cleanLink}/embed`;
-  }
-
-  return link;
-}
-
-function renderDesktopNav(root) {
-  if (!root) {
-    return;
-  }
-
-  root.innerHTML = desktopNav
+function renderDesktopNav() {
+  desktopNavRoot.innerHTML = desktopNav
     .map(
       (item) => `
-        <button class="sidebar-link${state.activePage === item.label.toLowerCase().replace(/\s+/g, "") ? " is-active" : ""}" type="button" data-page="${item.label.toLowerCase().replace(/\s+/g, "")}">
+        <button class="sidebar-link${activePage === item.label.toLowerCase().replace(/\s+/g, "") ? " is-active" : ""}" type="button" data-page="${item.label.toLowerCase().replace(/\s+/g, "")}">
           <span class="sidebar-link__icon">${iconSvg(item.icon)}</span>
           <span>${item.label}</span>
         </button>
@@ -191,41 +182,33 @@ function renderDesktopNav(root) {
     )
     .join("");
 
-  Array.from(root.querySelectorAll(".sidebar-link")).forEach((button) => {
+  Array.from(desktopNavRoot.querySelectorAll(".sidebar-link")).forEach((button) => {
     button.addEventListener("click", () => {
       setPage(button.dataset.page);
     });
   });
 }
 
-function renderMobileNav(root) {
-  if (!root) {
-    return;
-  }
-
-  root.innerHTML = mobileNav
+function renderMobileNav() {
+  mobileNavRoot.innerHTML = mobileNav
     .map(
       (item) => `
-        <button class="nav-icon${state.activePage === item.page ? " is-active" : ""}" type="button" aria-label="${item.icon}" data-page="${item.page}">
-          ${iconSvg(item.icon)}
+        <button class="nav-icon${activePage === item.page ? " is-active" : ""}" type="button" aria-label="${item.icon}" data-page="${item.page}">
+          ${item.icon === "profile" ? '<div class="avatar-mini"></div>' : iconSvg(item.icon)}
         </button>
       `
     )
     .join("");
 
-  Array.from(root.querySelectorAll(".nav-icon")).forEach((button) => {
+  Array.from(mobileNavRoot.querySelectorAll(".nav-icon")).forEach((button) => {
     button.addEventListener("click", () => {
       setPage(button.dataset.page);
     });
   });
 }
 
-function renderHighlights(root) {
-  if (!root) {
-    return;
-  }
-
-  root.innerHTML = highlights
+function renderHighlights() {
+  highlightsRoot.innerHTML = highlights
     .map(
       (item, index) => `
         <button class="story-item motion-layer reveal-item" style="--stagger:${index}" type="button">
@@ -240,24 +223,36 @@ function renderHighlights(root) {
     )
     .join("");
 
-  observeRevealTargets(root.querySelectorAll(".reveal-item"));
+  observeRevealTargets(highlightsRoot.querySelectorAll(".reveal-item"));
 }
 
-function renderTabs(buttons) {
-  buttons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.tab === state.activeTab);
+function renderTabs() {
+  tabButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.tab === activeTab);
   });
 }
 
-function openModal(overlay, title, subtitle, body) {
-  const modalTitle = document.getElementById("modal-title");
-  const modalSubtitle = document.getElementById("modal-subtitle");
-  const modalBody = document.getElementById("modal-body");
-
-  if (!overlay || !modalTitle || !modalSubtitle || !modalBody) {
-    return;
+function badgeMarkup(mode, item) {
+  if (mode === "reels") {
+    return `<div class="grid-card__badge"><span class="grid-card__badge-dot"></span><span>${item.badge}</span></div>`;
   }
 
+  if (mode === "collabs") {
+    return `<div class="grid-card__badge"><span>Collab</span></div>`;
+  }
+
+  return '<div class="grid-card__pin"><svg class="icon icon--tiny" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4 5 5-9.8 9.8H5.2v-5.01z"></path></svg></div>';
+}
+
+function renderGridMedia(item, mode) {
+  if (mode === "posts" && item.src) {
+    return `<img class="grid-card__image" src="${item.src}" alt="${item.title}" loading="lazy">`;
+  }
+
+  return `<div class="grid-card__art" style="background:${item.accent}"></div>`;
+}
+
+function openModal(title, subtitle, body) {
   modalTitle.textContent = title;
   modalSubtitle.textContent = subtitle;
   modalBody.innerHTML = body;
@@ -265,27 +260,18 @@ function openModal(overlay, title, subtitle, body) {
   document.body.style.overflow = "hidden";
 }
 
-function closeModal(overlay) {
-  if (!overlay) {
-    return;
-  }
-
+function closeModal() {
   overlay.classList.add("is-hidden");
   document.body.style.overflow = "";
 }
 
 function renderLinksPopup() {
-  const linksList = document.getElementById("links-list");
-  if (!linksList) {
-    return;
-  }
-
   linksList.innerHTML = profileLinks
     .map(
       (item) => `
         <a class="link-row" href="${item.href}" target="_blank" rel="noreferrer">
           <span class="link-row__icon">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${iconSvg(item.icon).replace('<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">', "").replace("</svg>", "")}</svg>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${iconSvg(item.icon).replace('<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">', '').replace("</svg>", "")}</svg>
           </span>
           <span>
             <span class="link-row__title">${item.title}</span>
@@ -297,174 +283,47 @@ function renderLinksPopup() {
     .join("");
 }
 
-function openLinksPopup(overlay) {
-  if (!overlay) {
-    return;
-  }
-
+function openLinksPopup() {
   renderLinksPopup();
-  overlay.classList.remove("is-hidden");
+  linksOverlay.classList.remove("is-hidden");
   document.body.style.overflow = "hidden";
 }
 
-function closeLinksPopup(overlay, modalOverlay) {
-  if (!overlay) {
-    return;
-  }
-
-  overlay.classList.add("is-hidden");
-  document.body.style.overflow = modalOverlay && modalOverlay.classList.contains("is-hidden") ? "" : "hidden";
+function closeLinksPopup() {
+  linksOverlay.classList.add("is-hidden");
+  document.body.style.overflow = overlay.classList.contains("is-hidden") ? "" : "hidden";
 }
 
 function setPage(page) {
-  state.activePage = page;
-
-  const storyStrip = document.getElementById("highlights-list");
-  const tabStrip = document.querySelector(".tab-strip");
-  const galleryRoot = document.getElementById("gallery");
-  const contentSections = document.getElementById("content-sections");
-  const contentPanels = Array.from(document.querySelectorAll(".content-panel"));
+  activePage = page;
   const isHome = page === "home";
 
-  if (storyStrip) {
-    storyStrip.style.display = isHome ? "flex" : "none";
-  }
-
-  if (tabStrip) {
-    tabStrip.style.display = isHome ? "grid" : "none";
-  }
-
-  if (galleryRoot) {
-    galleryRoot.style.display = isHome ? "grid" : "none";
-  }
-
-  if (contentSections) {
-    contentSections.style.display = isHome ? "none" : "block";
-  }
+  storyStrip.style.display = isHome ? "flex" : "none";
+  tabStrip.style.display = isHome ? "grid" : "none";
+  galleryRoot.style.display = isHome ? "grid" : "none";
+  contentSections.style.display = isHome ? "none" : "block";
 
   contentPanels.forEach((panel) => {
     panel.classList.toggle("is-active", panel.id === `section-${page}`);
   });
 
-  renderDesktopNav(document.getElementById("desktop-nav"));
-  renderMobileNav(document.getElementById("mobile-nav"));
+  renderDesktopNav();
+  renderMobileNav();
   observeRevealTargets(document.querySelectorAll(".content-panel.is-active"));
   requestParallaxUpdate();
 }
 
-function getTabItems() {
-  return state.galleryData[state.activeTab] || [];
-}
-
-function renderGridMedia(item) {
-  if (state.activeTab === "posters") {
-    return `<img class="grid-card__image" src="${getPosterImagePath(item.image)}" alt="${escapeHtml(item.caption || "Poster")}" loading="lazy">`;
-  }
-
-  if (state.activeTab === "reels") {
-    return `<img class="grid-card__image" src="${getReelThumbnailPath(item.thumbnail)}" alt="${escapeHtml(item.platform || "Reel")}" loading="lazy">`;
-  }
-
-  return `<img class="grid-card__image" src="${getProjectImagePath(item.image)}" alt="${escapeHtml(item.title || "Project")}" loading="lazy">`;
-}
-
-function getCardTitle(item) {
-  if (state.activeTab === "posters") {
-    return item.caption || "Poster";
-  }
-
-  if (state.activeTab === "reels") {
-    return item.platform || "Reel";
-  }
-
-  return item.title || "Project";
-}
-
-function getCardLabel(item) {
-  if (state.activeTab === "posters") {
-    return "Click to view";
-  }
-
-  if (state.activeTab === "reels") {
-    return item.platform || "Video";
-  }
-
-  return item.techStack || "Project";
-}
-
-function openGalleryItem(item, overlay) {
-  if (state.activeTab === "posters") {
-    openModal(
-      overlay,
-      "Poster Preview",
-      "Image and caption",
-      `
-        <img class="modal-preview-image" src="${getPosterImagePath(item.image)}" alt="${escapeHtml(item.caption || "Poster")}">
-        <div class="modal-text">
-          <p>${escapeHtml(item.caption)}</p>
-        </div>
-      `
-    );
-    return;
-  }
-
-  if (state.activeTab === "reels") {
-    const embedUrl = getEmbedUrl(item.videoLink, item.platform);
-    const iframeMarkup = embedUrl
-      ? `<div class="video-frame"><iframe src="${escapeHtml(embedUrl)}" title="${escapeHtml(item.platform || "Reel")}" loading="lazy" allowfullscreen></iframe></div>`
-      : `<p class="empty-state">Missing video link.</p>`;
-
-    openModal(
-      overlay,
-      "Reel Preview",
-      item.platform || "Video",
-      `
-        ${iframeMarkup}
-        <div class="modal-text">
-          <p>Thumbnail: ${escapeHtml(item.thumbnail)}</p>
-          <p>Platform: ${escapeHtml(item.platform)}</p>
-        </div>
-      `
-    );
-    return;
-  }
-
-  openModal(
-    overlay,
-    item.title || "Project",
-    item.techStack || "Development Project",
-    `
-      <img class="modal-preview-image" src="${getProjectImagePath(item.image)}" alt="${escapeHtml(item.title || "Project")}">
-      <div class="modal-text">
-        <p>${escapeHtml(item.description)}</p>
-        <p><strong>Tech stack:</strong> ${escapeHtml(item.techStack)}</p>
-        <a class="project-link-button" href="${escapeHtml(item.githubLink)}" target="_blank" rel="noreferrer">Open GitHub</a>
-      </div>
-    `
-  );
-}
-
-function renderGallery(overlay) {
-  const galleryRoot = document.getElementById("gallery");
-  if (!galleryRoot) {
-    return;
-  }
-
-  const items = getTabItems();
-  if (!items.length) {
-    galleryRoot.innerHTML = `<div class="empty-state empty-state--grid">No ${state.activeTab} in data.json yet.</div>`;
-    return;
-  }
-
-  galleryRoot.innerHTML = items
+function renderGallery() {
+  galleryRoot.innerHTML = galleryData[activeTab]
     .map(
       (item, index) => `
-        <button class="grid-card motion-layer reveal-item${state.activeTab === "posters" ? " grid-card--poster" : ""}" style="--stagger:${index}" type="button" data-index="${index}">
-          ${renderGridMedia(item)}
+        <button class="grid-card motion-layer reveal-item${activeTab === "posts" ? " grid-card--poster" : ""}" style="--stagger:${index}" type="button" data-id="${item.id}">
+          ${activeTab === "posts" ? "" : badgeMarkup(activeTab, item)}
+          ${renderGridMedia(item, activeTab)}
           <div class="grid-card__overlay"></div>
           <div class="grid-card__meta">
-            <p class="grid-card__title">${escapeHtml(getCardTitle(item))}</p>
-            <p class="grid-card__label">${escapeHtml(getCardLabel(item))}</p>
+            <p class="grid-card__title">${item.title}</p>
+            <p class="grid-card__label">${item.label}</p>
           </div>
         </button>
       `
@@ -475,15 +334,25 @@ function renderGallery(overlay) {
 
   Array.from(galleryRoot.querySelectorAll(".grid-card")).forEach((button) => {
     button.addEventListener("click", () => {
-      const item = items[Number(button.dataset.index)];
-      openGalleryItem(item, overlay);
+      const item = galleryData[activeTab].find((entry) => String(entry.id) === button.dataset.id);
+      const preview = item.src
+        ? `<img class="modal-preview-image" src="${item.src}" alt="${item.title}">`
+        : `<div class="modal-preview" style="background:${item.accent}"></div>`;
+      openModal(
+        item.title,
+        item.label,
+        `${preview}
+         <div class="modal-text">
+           <p>${item.description || "Built as a portfolio piece inside an Instagram-style profile layout."}</p>
+           ${item.meta ? `<p>${item.meta}</p>` : ""}
+         </div>`
+      );
     });
   });
 }
 
-function openMessageModal(overlay) {
+function openMessageModal() {
   openModal(
-    overlay,
     "Direct message",
     `Chat with ${profile.username}`,
     `<div class="chat-bubble">Hey, I want a poster set and a short-form reel package for my brand launch.</div>
@@ -492,7 +361,7 @@ function openMessageModal(overlay) {
   );
 }
 
-function openContactModal(overlay) {
+function openContactModal() {
   const links = [
     { label: "WhatsApp", value: profile.whatsapp, href: `https://wa.me/${profile.whatsapp.replace(/\D/g, "")}` },
     { label: "Instagram", value: profile.instagram, href: `https://instagram.com/${profile.instagram.replace("@", "")}` },
@@ -503,7 +372,6 @@ function openContactModal(overlay) {
   ];
 
   openModal(
-    overlay,
     "Contact",
     "Available for freelance and collabs",
     `<div class="contact-list">
@@ -558,7 +426,7 @@ function animateCounter(element, value, duration = 1400) {
   requestAnimationFrame(step);
 }
 
-function startStatCounters(statDesigns, statEdits, statConcepts) {
+function startStatCounters() {
   if (hasAnimatedStats) {
     return;
   }
@@ -570,22 +438,13 @@ function startStatCounters(statDesigns, statEdits, statConcepts) {
 }
 
 function initStatCounters() {
-  const statDesigns = document.getElementById("stat-designs");
-  const statEdits = document.getElementById("stat-edits");
-  const statConcepts = document.getElementById("stat-concepts");
-  const statsRow = document.querySelector(".stats-row");
-
-  if (!statDesigns || !statEdits || !statConcepts || !statsRow) {
-    return;
-  }
-
   [statDesigns, statEdits, statConcepts].forEach((element) => {
     const { suffix } = parseMetricValue(element.dataset.target || "0+");
     element.textContent = `0${suffix}`;
   });
 
-  if (!("IntersectionObserver" in window) || motionQuery.matches) {
-    startStatCounters(statDesigns, statEdits, statConcepts);
+  if (!("IntersectionObserver" in window) || motionQuery.matches || !statsRow) {
+    startStatCounters();
     return;
   }
 
@@ -593,7 +452,7 @@ function initStatCounters() {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          startStatCounters(statDesigns, statEdits, statConcepts);
+          startStatCounters();
           observer.disconnect();
         }
       });
@@ -605,10 +464,6 @@ function initStatCounters() {
 }
 
 function observeRevealTargets(targets) {
-  if (!targets || !targets.length) {
-    return;
-  }
-
   targets.forEach((element) => {
     element.classList.add("motion-layer", "reveal-item");
   });
@@ -641,12 +496,6 @@ function observeRevealTargets(targets) {
 
 function updateParallax() {
   parallaxFrame = 0;
-
-  const profileHero = document.querySelector(".profile-hero");
-  const bioArea = document.querySelector(".bio-area");
-  const actionRow = document.querySelector(".action-row");
-  const storyStrip = document.getElementById("highlights-list");
-  const galleryRoot = document.getElementById("gallery");
 
   if (motionQuery.matches) {
     [profileHero, bioArea, actionRow, storyStrip, galleryRoot].forEach((element) => {
@@ -687,14 +536,6 @@ function requestParallaxUpdate() {
 }
 
 function initMotionEffects() {
-  const profileHero = document.querySelector(".profile-hero");
-  const bioArea = document.querySelector(".bio-area");
-  const actionRow = document.querySelector(".action-row");
-  const storyStrip = document.getElementById("highlights-list");
-  const tabStrip = document.querySelector(".tab-strip");
-  const galleryRoot = document.getElementById("gallery");
-  const contentPanels = Array.from(document.querySelectorAll(".content-panel"));
-
   observeRevealTargets(
     [profileHero, bioArea, actionRow, storyStrip, tabStrip, galleryRoot, ...contentPanels].filter(Boolean)
   );
@@ -708,241 +549,52 @@ function initMotionEffects() {
   });
 }
 
-function populateProfile() {
-  const statDesigns = document.getElementById("stat-designs");
-  const statEdits = document.getElementById("stat-edits");
-  const statConcepts = document.getElementById("stat-concepts");
-  const displayName = document.getElementById("display-name");
-  const websiteLink = document.getElementById("website-link");
-
-  if (statDesigns) {
-    statDesigns.dataset.target = profile.designs;
-  }
-
-  if (statEdits) {
-    statEdits.dataset.target = profile.edits;
-  }
-
-  if (statConcepts) {
-    statConcepts.dataset.target = profile.concepts;
-  }
-
-  if (displayName) {
-    displayName.textContent = profile.displayName;
-  }
-
-  if (websiteLink) {
-    websiteLink.textContent = profile.website;
-  }
-}
-
-async function initPortfolioPage() {
-  state.galleryData = await loadPortfolioData();
-
-  const overlay = document.getElementById("overlay");
-  const linksOverlay = document.getElementById("links-overlay");
-  const galleryRoot = document.getElementById("gallery");
-  const tabButtons = Array.from(document.querySelectorAll(".tab-button"));
-
-  populateProfile();
-  renderDesktopNav(document.getElementById("desktop-nav"));
-  renderMobileNav(document.getElementById("mobile-nav"));
-  renderHighlights(document.getElementById("highlights-list"));
-  renderTabs(tabButtons);
-  renderGallery(overlay);
-  setPage("home");
-  initMotionEffects();
-  initStatCounters();
-
-  tabButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      state.activeTab = button.dataset.tab;
-      renderTabs(tabButtons);
-      renderGallery(overlay);
-      requestParallaxUpdate();
-    });
+tabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    activeTab = button.dataset.tab;
+    renderTabs();
+    renderGallery();
   });
+});
 
-  const messageTrigger = document.getElementById("message-trigger");
-  const contactTrigger = document.getElementById("contact-trigger");
-  const linksTrigger = document.getElementById("links-trigger");
-  const modalClose = document.getElementById("modal-close");
-  const linksClose = document.getElementById("links-close");
-  const sidebarToggle = document.getElementById("sidebar-toggle");
-
-  if (messageTrigger) {
-    messageTrigger.addEventListener("click", () => openMessageModal(overlay));
+document.getElementById("message-trigger").addEventListener("click", openMessageModal);
+document.getElementById("contact-trigger").addEventListener("click", openContactModal);
+document.getElementById("links-trigger").addEventListener("click", openLinksPopup);
+document.getElementById("modal-close").addEventListener("click", closeModal);
+document.getElementById("links-close").addEventListener("click", closeLinksPopup);
+overlay.addEventListener("click", (event) => {
+  if (event.target.dataset.close === "true") {
+    closeModal();
   }
-
-  if (contactTrigger) {
-    contactTrigger.addEventListener("click", () => openContactModal(overlay));
+});
+linksOverlay.addEventListener("click", (event) => {
+  if (event.target.dataset.linksClose === "true") {
+    closeLinksPopup();
   }
-
-  if (linksTrigger) {
-    linksTrigger.addEventListener("click", () => openLinksPopup(linksOverlay));
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeModal();
+    closeLinksPopup();
   }
+});
 
-  if (modalClose) {
-    modalClose.addEventListener("click", () => closeModal(overlay));
-  }
+statDesigns.dataset.target = profile.designs;
+statEdits.dataset.target = profile.edits;
+statConcepts.dataset.target = profile.concepts;
+document.getElementById("display-name").textContent = profile.displayName;
+document.getElementById("website-link").textContent = profile.website;
 
-  if (linksClose) {
-    linksClose.addEventListener("click", () => closeLinksPopup(linksOverlay, overlay));
-  }
+renderDesktopNav();
+renderMobileNav();
+renderHighlights();
+renderTabs();
+renderGallery();
+setPage("home");
+initMotionEffects();
+initStatCounters();
 
-  if (overlay) {
-    overlay.addEventListener("click", (event) => {
-      if (event.target.dataset.close === "true") {
-        closeModal(overlay);
-      }
-    });
-  }
-
-  if (linksOverlay) {
-    linksOverlay.addEventListener("click", (event) => {
-      if (event.target.dataset.linksClose === "true") {
-        closeLinksPopup(linksOverlay, overlay);
-      }
-    });
-  }
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeModal(overlay);
-      closeLinksPopup(linksOverlay, overlay);
-    }
-  });
-
-  if (sidebarToggle) {
-    sidebarToggle.addEventListener("click", () => {
-      document.body.classList.toggle("sidebar-collapsed");
-      requestParallaxUpdate();
-    });
-  }
-
-  if (!getTabItems().length && galleryRoot) {
-    galleryRoot.innerHTML = `<div class="empty-state empty-state--grid">No ${state.activeTab} in data.json yet.</div>`;
-  }
-}
-
-function createAdminState(data) {
-  return {
-    posters: [...data.posters],
-    reels: [...data.reels],
-    projects: [...data.projects]
-  };
-}
-
-function formatJson(data) {
-  return JSON.stringify(data, null, 2);
-}
-
-function renderAdminList(root, items, formatter) {
-  if (!root) {
-    return;
-  }
-
-  if (!items.length) {
-    root.innerHTML = `<p class="admin-empty">No entries added yet.</p>`;
-    return;
-  }
-
-  root.innerHTML = items
-    .map(
-      (item, index) => `
-        <div class="admin-list__item">
-          <strong>${index + 1}. ${escapeHtml(formatter.title(item))}</strong>
-          <p>${escapeHtml(formatter.meta(item))}</p>
-        </div>
-      `
-    )
-    .join("");
-}
-
-function initAdminPage() {
-  const posterForm = document.getElementById("poster-form");
-  const reelForm = document.getElementById("reel-form");
-  const projectForm = document.getElementById("project-form");
-  const jsonPreview = document.getElementById("json-preview");
-  const generateButton = document.getElementById("generate-json");
-
-  if (!posterForm || !reelForm || !projectForm || !jsonPreview || !generateButton) {
-    return;
-  }
-
-  loadPortfolioData().then((data) => {
-    const adminState = createAdminState(data);
-
-    function updatePreview() {
-      jsonPreview.textContent = formatJson(adminState);
-    }
-
-    function renderLists() {
-      renderAdminList(document.getElementById("poster-list"), adminState.posters, {
-        title: (item) => item.image,
-        meta: (item) => item.caption
-      });
-      renderAdminList(document.getElementById("reel-list"), adminState.reels, {
-        title: (item) => item.thumbnail,
-        meta: (item) => `${item.platform} • ${item.videoLink}`
-      });
-      renderAdminList(document.getElementById("project-list"), adminState.projects, {
-        title: (item) => item.title,
-        meta: (item) => item.techStack
-      });
-    }
-
-    posterForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const formData = new FormData(posterForm);
-      adminState.posters.push({
-        image: String(formData.get("image") || "").trim(),
-        caption: String(formData.get("caption") || "").trim()
-      });
-      posterForm.reset();
-      renderLists();
-      updatePreview();
-    });
-
-    reelForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const formData = new FormData(reelForm);
-      adminState.reels.push({
-        thumbnail: String(formData.get("thumbnail") || "").trim(),
-        videoLink: String(formData.get("videoLink") || "").trim(),
-        platform: String(formData.get("platform") || "").trim()
-      });
-      reelForm.reset();
-      renderLists();
-      updatePreview();
-    });
-
-    projectForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const formData = new FormData(projectForm);
-      adminState.projects.push({
-        image: String(formData.get("image") || "").trim(),
-        title: String(formData.get("title") || "").trim(),
-        description: String(formData.get("description") || "").trim(),
-        techStack: String(formData.get("techStack") || "").trim(),
-        githubLink: String(formData.get("githubLink") || "").trim()
-      });
-      projectForm.reset();
-      renderLists();
-      updatePreview();
-    });
-
-    generateButton.addEventListener("click", updatePreview);
-
-    renderLists();
-    updatePreview();
-  });
-}
-
-if (document.getElementById("gallery")) {
-  initPortfolioPage();
-}
-
-if (document.getElementById("json-preview")) {
-  initAdminPage();
-}
+document.getElementById("sidebar-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("sidebar-collapsed");
+  requestParallaxUpdate();
+});
