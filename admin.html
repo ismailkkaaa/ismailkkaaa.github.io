@@ -15,6 +15,136 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
+    <style>
+      .admin-form {
+        gap: 16px;
+      }
+
+      .upload-fieldset {
+        display: grid;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .upload-label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 16px;
+        border: 1px dashed rgba(255, 255, 255, 0.18);
+        border-radius: 14px;
+        background: var(--panel-2);
+        font-weight: 600;
+      }
+
+      .upload-label:hover,
+      .upload-label:focus-within {
+        border-color: rgba(79, 93, 244, 0.7);
+      }
+
+      .upload-label input {
+        display: none;
+      }
+
+      .upload-meta {
+        display: grid;
+        gap: 10px;
+      }
+
+      .upload-filename {
+        color: #dfe8f4;
+        font-size: 13px;
+        word-break: break-word;
+      }
+
+      .upload-note {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .upload-preview {
+        display: none;
+        align-items: center;
+        gap: 12px;
+        min-height: 86px;
+        padding: 10px;
+        border: 1px solid var(--line-soft);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .upload-preview.is-visible {
+        display: flex;
+      }
+
+      .upload-preview img {
+        width: 72px;
+        height: 72px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: #05070b;
+      }
+
+      .upload-preview__text strong,
+      .upload-preview__text span {
+        display: block;
+      }
+
+      .upload-preview__text strong {
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+
+      .upload-preview__text span {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+        word-break: break-word;
+      }
+
+      .admin-tip {
+        margin: 0;
+        padding: 14px 16px;
+        border: 1px solid rgba(79, 93, 244, 0.2);
+        border-radius: 16px;
+        background: rgba(79, 93, 244, 0.08);
+        color: #d7e3ff;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .admin-steps {
+        display: grid;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .admin-step {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .admin-step strong {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        font-size: 12px;
+      }
+    </style>
   </head>
   <body class="admin-page">
     <main class="admin-shell">
@@ -22,11 +152,16 @@
         <p class="admin-hero__eyebrow">Static CMS Workflow</p>
         <h1>Portfolio Admin Panel</h1>
         <p>
-          Add content here, generate JSON, paste it into <code>data.json</code>, then push to GitHub for
-          Netlify deployment.
+          This works like a simple upload system, but stays fully static for GitHub + Netlify. Select an
+          image, review the preview, generate JSON, then paste it into <code>data.json</code>.
         </p>
         <div class="admin-hero__actions">
           <a class="secondary-button admin-hero__link" href="./index.html">View Portfolio</a>
+        </div>
+        <div class="admin-steps">
+          <div class="admin-step"><strong>1</strong><span>Select an image file</span></div>
+          <div class="admin-step"><strong>2</strong><span>Fill the remaining fields</span></div>
+          <div class="admin-step"><strong>3</strong><span>Copy generated JSON into <code>data.json</code></span></div>
         </div>
       </section>
 
@@ -38,14 +173,32 @@
               <h2>Posters</h2>
             </div>
             <form class="admin-form" id="poster-form">
-              <label class="admin-field">
-                <span>Image filename</span>
-                <input type="text" name="image" placeholder="1.jpg" required />
-              </label>
+              <div class="upload-fieldset">
+                <label class="upload-label">
+                  <input type="file" name="imageFile" accept="image/*" required />
+                  <span>Select Poster Image</span>
+                </label>
+                <div class="upload-meta">
+                  <div class="upload-filename" data-file-label>No image selected</div>
+                  <div class="upload-preview" data-preview>
+                    <img src="" alt="Poster preview" data-preview-image />
+                    <div class="upload-preview__text">
+                      <strong>Image preview</strong>
+                      <span data-preview-name></span>
+                    </div>
+                  </div>
+                </div>
+                <p class="upload-note">
+                  After selecting the image, manually place the file into the correct folder:
+                  <code>poster/</code>
+                </p>
+              </div>
+
               <label class="admin-field">
                 <span>Caption</span>
                 <textarea name="caption" rows="4" placeholder="Poster caption" required></textarea>
               </label>
+
               <button class="primary-button" type="submit">Add Poster</button>
             </form>
             <div class="admin-list" id="poster-list"></div>
@@ -57,19 +210,37 @@
               <h2>Reels</h2>
             </div>
             <form class="admin-form" id="reel-form">
-              <label class="admin-field">
-                <span>Thumbnail image filename</span>
-                <input type="text" name="thumbnail" placeholder="thumb-1.jpg" required />
-              </label>
+              <div class="upload-fieldset">
+                <label class="upload-label">
+                  <input type="file" name="thumbnailFile" accept="image/*" required />
+                  <span>Select Thumbnail Image</span>
+                </label>
+                <div class="upload-meta">
+                  <div class="upload-filename" data-file-label>No image selected</div>
+                  <div class="upload-preview" data-preview>
+                    <img src="" alt="Reel thumbnail preview" data-preview-image />
+                    <div class="upload-preview__text">
+                      <strong>Thumbnail preview</strong>
+                      <span data-preview-name></span>
+                    </div>
+                  </div>
+                </div>
+                <p class="upload-note">
+                  After selecting the image, manually place the file into the correct folder:
+                  <code>reels/</code>
+                </p>
+              </div>
+
               <label class="admin-field">
                 <span>Video link</span>
                 <input
                   type="url"
                   name="videoLink"
-                  placeholder="https://www.youtube.com/embed/..."
+                  placeholder="https://www.youtube.com/embed/... or Instagram reel link"
                   required
                 />
               </label>
+
               <label class="admin-field">
                 <span>Platform</span>
                 <select name="platform" required>
@@ -77,6 +248,7 @@
                   <option value="Instagram">Instagram</option>
                 </select>
               </label>
+
               <button class="primary-button" type="submit">Add Reel</button>
             </form>
             <div class="admin-list" id="reel-list"></div>
@@ -88,26 +260,47 @@
               <h2>Projects</h2>
             </div>
             <form class="admin-form" id="project-form">
-              <label class="admin-field">
-                <span>Project image filename</span>
-                <input type="text" name="image" placeholder="project-1.jpg" required />
-              </label>
+              <div class="upload-fieldset">
+                <label class="upload-label">
+                  <input type="file" name="imageFile" accept="image/*" required />
+                  <span>Select Project Image</span>
+                </label>
+                <div class="upload-meta">
+                  <div class="upload-filename" data-file-label>No image selected</div>
+                  <div class="upload-preview" data-preview>
+                    <img src="" alt="Project preview" data-preview-image />
+                    <div class="upload-preview__text">
+                      <strong>Project preview</strong>
+                      <span data-preview-name></span>
+                    </div>
+                  </div>
+                </div>
+                <p class="upload-note">
+                  After selecting the image, manually place the file into the correct folder:
+                  <code>projects/</code>
+                </p>
+              </div>
+
               <label class="admin-field">
                 <span>Project title</span>
                 <input type="text" name="title" placeholder="Portfolio CMS" required />
               </label>
+
               <label class="admin-field">
                 <span>Description</span>
                 <textarea name="description" rows="4" placeholder="Project summary" required></textarea>
               </label>
+
               <label class="admin-field">
                 <span>Tech stack</span>
                 <input type="text" name="techStack" placeholder="HTML, CSS, JavaScript" required />
               </label>
+
               <label class="admin-field">
                 <span>GitHub link</span>
                 <input type="url" name="githubLink" placeholder="https://github.com/..." required />
               </label>
+
               <button class="primary-button" type="submit">Add Project</button>
             </form>
             <div class="admin-list" id="project-list"></div>
@@ -128,13 +321,231 @@
   "projects": []
 }</pre>
           <p class="admin-note">
-            Images are not uploaded here. Add files manually to <code>poster/</code>, <code>reels/</code>, and
-            <code>projects/</code>, then paste the generated JSON into <code>data.json</code>.
+            No real upload happens here. The selected file name is used in JSON only. After selecting the
+            image, manually place the file into the correct folder: <code>poster/</code>, <code>reels/</code>,
+            or <code>projects/</code>.
+          </p>
+          <p class="admin-tip">
+            Beginner-friendly rule: if the preview looks right and the JSON filename matches your image file,
+            you can paste the JSON into <code>data.json</code>.
           </p>
         </aside>
       </section>
     </main>
 
-    <script src="./script.js"></script>
+    <script>
+      const emptyData = {
+        posters: [],
+        reels: [],
+        projects: []
+      };
+
+      const adminState = {
+        posters: [],
+        reels: [],
+        projects: []
+      };
+
+      function normalizeData(data) {
+        return {
+          posters: Array.isArray(data?.posters) ? data.posters : [],
+          reels: Array.isArray(data?.reels) ? data.reels : [],
+          projects: Array.isArray(data?.projects) ? data.projects : []
+        };
+      }
+
+      function formatJson(data) {
+        return JSON.stringify(data, null, 2);
+      }
+
+      function updateJsonPreview() {
+        document.getElementById("json-preview").textContent = formatJson(adminState);
+      }
+
+      function renderList(targetId, items, mapItem) {
+        const target = document.getElementById(targetId);
+        if (!target) {
+          return;
+        }
+
+        if (!items.length) {
+          target.innerHTML = '<p class="admin-empty">No entries added yet.</p>';
+          return;
+        }
+
+        target.innerHTML = items
+          .map((item, index) => {
+            const mapped = mapItem(item);
+            return `
+              <div class="admin-list__item">
+                <strong>${index + 1}. ${mapped.title}</strong>
+                <p>${mapped.meta}</p>
+              </div>
+            `;
+          })
+          .join("");
+      }
+
+      function renderLists() {
+        renderList("poster-list", adminState.posters, (item) => ({
+          title: item.image,
+          meta: item.caption
+        }));
+
+        renderList("reel-list", adminState.reels, (item) => ({
+          title: item.thumbnail,
+          meta: `${item.platform} • ${item.videoLink}`
+        }));
+
+        renderList("project-list", adminState.projects, (item) => ({
+          title: item.title,
+          meta: `${item.techStack} • ${item.image}`
+        }));
+      }
+
+      function setupFilePicker(form) {
+        const input = form.querySelector('input[type="file"]');
+        const label = form.querySelector("[data-file-label]");
+        const preview = form.querySelector("[data-preview]");
+        const previewImage = form.querySelector("[data-preview-image]");
+        const previewName = form.querySelector("[data-preview-name]");
+
+        function resetPreview() {
+          label.textContent = "No image selected";
+          preview.classList.remove("is-visible");
+          previewImage.src = "";
+          previewName.textContent = "";
+        }
+
+        input.addEventListener("change", () => {
+          const file = input.files && input.files[0];
+          if (!file) {
+            resetPreview();
+            return;
+          }
+
+          label.textContent = `Selected file: ${file.name}`;
+          previewImage.src = URL.createObjectURL(file);
+          previewName.textContent = file.name;
+          preview.classList.add("is-visible");
+        });
+
+        form.addEventListener("reset", () => {
+          setTimeout(resetPreview, 0);
+        });
+
+        resetPreview();
+        return input;
+      }
+
+      function addPoster(form, fileInput) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const file = fileInput.files && fileInput.files[0];
+          const caption = form.elements.caption.value.trim();
+
+          if (!file || !caption) {
+            return;
+          }
+
+          adminState.posters.push({
+            image: file.name,
+            caption
+          });
+
+          form.reset();
+          renderLists();
+          updateJsonPreview();
+        });
+      }
+
+      function addReel(form, fileInput) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const file = fileInput.files && fileInput.files[0];
+          const videoLink = form.elements.videoLink.value.trim();
+          const platform = form.elements.platform.value.trim();
+
+          if (!file || !videoLink || !platform) {
+            return;
+          }
+
+          adminState.reels.push({
+            thumbnail: file.name,
+            videoLink,
+            platform
+          });
+
+          form.reset();
+          renderLists();
+          updateJsonPreview();
+        });
+      }
+
+      function addProject(form, fileInput) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const file = fileInput.files && fileInput.files[0];
+          const title = form.elements.title.value.trim();
+          const description = form.elements.description.value.trim();
+          const techStack = form.elements.techStack.value.trim();
+          const githubLink = form.elements.githubLink.value.trim();
+
+          if (!file || !title || !description || !techStack || !githubLink) {
+            return;
+          }
+
+          adminState.projects.push({
+            image: file.name,
+            title,
+            description,
+            techStack,
+            githubLink
+          });
+
+          form.reset();
+          renderLists();
+          updateJsonPreview();
+        });
+      }
+
+      async function loadExistingData() {
+        try {
+          const response = await fetch("./data.json", { cache: "no-store" });
+          if (!response.ok) {
+            throw new Error("Failed to load data.json");
+          }
+
+          const data = normalizeData(await response.json());
+          adminState.posters = [...data.posters];
+          adminState.reels = [...data.reels];
+          adminState.projects = [...data.projects];
+        } catch (error) {
+          adminState.posters = [...emptyData.posters];
+          adminState.reels = [...emptyData.reels];
+          adminState.projects = [...emptyData.projects];
+        }
+
+        renderLists();
+        updateJsonPreview();
+      }
+
+      const posterForm = document.getElementById("poster-form");
+      const reelForm = document.getElementById("reel-form");
+      const projectForm = document.getElementById("project-form");
+      const generateButton = document.getElementById("generate-json");
+
+      const posterFileInput = setupFilePicker(posterForm);
+      const reelFileInput = setupFilePicker(reelForm);
+      const projectFileInput = setupFilePicker(projectForm);
+
+      addPoster(posterForm, posterFileInput);
+      addReel(reelForm, reelFileInput);
+      addProject(projectForm, projectFileInput);
+
+      generateButton.addEventListener("click", updateJsonPreview);
+
+      loadExistingData();
+    </script>
   </body>
 </html>
