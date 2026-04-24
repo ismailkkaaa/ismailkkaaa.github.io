@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Admin | Albasith C A</title>
+    <meta
+      name="description"
+      content="Static admin panel for managing posters, reels, and development projects through data.json."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section class="admin-hero">
+        <p class="admin-hero__eyebrow">Static CMS Workflow</p>
+        <h1>Portfolio Admin Panel</h1>
+        <p>
+          Add content here, generate JSON, paste it into <code>data.json</code>, then push to GitHub for
+          Netlify deployment.
+        </p>
+        <div class="admin-hero__actions">
+          <a class="secondary-button admin-hero__link" href="./index.html">View Portfolio</a>
+        </div>
+      </section>
+
+      <section class="admin-layout">
+        <div class="admin-forms">
+          <article class="admin-card">
+            <div class="admin-card__header">
+              <p class="content-panel__eyebrow">Add Poster</p>
+              <h2>Posters</h2>
+            </div>
+            <form class="admin-form" id="poster-form">
+              <label class="admin-field">
+                <span>Image filename</span>
+                <input type="text" name="image" placeholder="1.jpg" required />
+              </label>
+              <label class="admin-field">
+                <span>Caption</span>
+                <textarea name="caption" rows="4" placeholder="Poster caption" required></textarea>
+              </label>
+              <button class="primary-button" type="submit">Add Poster</button>
+            </form>
+            <div class="admin-list" id="poster-list"></div>
+          </article>
+
+          <article class="admin-card">
+            <div class="admin-card__header">
+              <p class="content-panel__eyebrow">Add Reel</p>
+              <h2>Reels</h2>
+            </div>
+            <form class="admin-form" id="reel-form">
+              <label class="admin-field">
+                <span>Thumbnail image filename</span>
+                <input type="text" name="thumbnail" placeholder="thumb-1.jpg" required />
+              </label>
+              <label class="admin-field">
+                <span>Video link</span>
+                <input
+                  type="url"
+                  name="videoLink"
+                  placeholder="https://www.youtube.com/embed/..."
+                  required
+                />
+              </label>
+              <label class="admin-field">
+                <span>Platform</span>
+                <select name="platform" required>
+                  <option value="YouTube">YouTube</option>
+                  <option value="Instagram">Instagram</option>
+                </select>
+              </label>
+              <button class="primary-button" type="submit">Add Reel</button>
+            </form>
+            <div class="admin-list" id="reel-list"></div>
+          </article>
+
+          <article class="admin-card">
+            <div class="admin-card__header">
+              <p class="content-panel__eyebrow">Add Dev Project</p>
+              <h2>Projects</h2>
+            </div>
+            <form class="admin-form" id="project-form">
+              <label class="admin-field">
+                <span>Project image filename</span>
+                <input type="text" name="image" placeholder="project-1.jpg" required />
+              </label>
+              <label class="admin-field">
+                <span>Project title</span>
+                <input type="text" name="title" placeholder="Portfolio CMS" required />
+              </label>
+              <label class="admin-field">
+                <span>Description</span>
+                <textarea name="description" rows="4" placeholder="Project summary" required></textarea>
+              </label>
+              <label class="admin-field">
+                <span>Tech stack</span>
+                <input type="text" name="techStack" placeholder="HTML, CSS, JavaScript" required />
+              </label>
+              <label class="admin-field">
+                <span>GitHub link</span>
+                <input type="url" name="githubLink" placeholder="https://github.com/..." required />
+              </label>
+              <button class="primary-button" type="submit">Add Project</button>
+            </form>
+            <div class="admin-list" id="project-list"></div>
+          </article>
+        </div>
+
+        <aside class="admin-preview admin-card">
+          <div class="admin-card__header">
+            <p class="content-panel__eyebrow">Generate JSON</p>
+            <h2>Live Preview</h2>
+          </div>
+          <div class="admin-preview__actions">
+            <button class="primary-button" id="generate-json" type="button">Generate JSON</button>
+          </div>
+          <pre class="json-preview" id="json-preview">{
+  "posters": [],
+  "reels": [],
+  "projects": []
+}</pre>
+          <p class="admin-note">
+            Images are not uploaded here. Add files manually to <code>poster/</code>, <code>reels/</code>, and
+            <code>projects/</code>, then paste the generated JSON into <code>data.json</code>.
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
