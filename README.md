@@ -104,9 +104,11 @@ Currently focusing on:
 
 ---
 
-## 📓 Running This Portfolio Locally
+## 📓 Running & Deploying Locally
 
-This repository hosts my personal portfolio. To install dependencies and run the project locally, follow these steps:
+This repository hosts my personal portfolio. To install dependencies, run locally, or deploy, follow these steps:
+
+### Local Development
 
 1. **Install dependencies:**
    ```bash
@@ -120,6 +122,24 @@ This repository hosts my personal portfolio. To install dependencies and run the
    ```bash
    npm run build
    ```
+
+### Deployment to GitHub Pages
+
+Since this is a Vite-based project, the uncompiled source code in the `main` branch cannot be served directly by browsers. We have configured two options for deployment:
+
+#### Option A: GitHub Actions (Recommended)
+1. Go to your repository settings on GitHub (**Settings** > **Pages**).
+2. Under **Build and deployment** > **Source**, select **GitHub Actions** from the dropdown menu.
+3. Every time you push to the `main` branch, the site will automatically build and deploy successfully.
+
+#### Option B: Deploy branch (`gh-pages`)
+1. Run this command locally to build and publish the site:
+   ```bash
+   npm run deploy
+   ```
+2. Go to your repository settings on GitHub (**Settings** > **Pages**).
+3. Under **Build and deployment** > **Source**, select **Deploy from a branch**.
+4. Set the **Branch** dropdown to `gh-pages` and folder to `/ (root)`. Click **Save**.
 
 *The original Figma design coordinates this site maps can be reviewed [here](https://www.figma.com/design/zuM1G91apEZxslq7dtunLX/ISMO-Notebook).*
 
