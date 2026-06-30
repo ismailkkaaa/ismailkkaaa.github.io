@@ -4,8 +4,6 @@
 
 import "./styles/index.css";
 
-import mePhotoUrl from "./assets/me/me.jpg";
-
 // Import all posters in the assets directory dynamically
 const posterGlobals = import.meta.glob<string>('/src/assets/posters/*.{png,jpg,jpeg,webp}', { eager: true, query: '?url', import: 'default' });
 
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function initProjects() {
   const heroImg = document.getElementById('hero-photo') as HTMLImageElement;
-  if (heroImg) heroImg.setAttribute('data-src', mePhotoUrl);
+  if (heroImg) heroImg.setAttribute('data-src', '/assets/me/me.jpg');
 
   const dreamsImg = document.getElementById('project-img-dreams') as HTMLImageElement;
   const spotonImg = document.getElementById('project-img-spoton') as HTMLImageElement;
