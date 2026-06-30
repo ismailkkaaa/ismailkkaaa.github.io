@@ -125,21 +125,26 @@ This repository hosts my personal portfolio. To install dependencies, run locall
 
 ### Deployment to GitHub Pages
 
-Since this is a Vite-based project, the uncompiled source code in the `main` branch cannot be served directly by browsers. We have configured two options for deployment:
+Since this is a Vite-based project, the uncompiled source code cannot be served directly by browsers. We manage deployment using a two-branch strategy:
+- The **`dev`** branch holds the React/Vite development source code.
+- The **`main`** branch holds only the compiled production-ready static files (`dist/` contents), which GitHub Pages serves directly.
 
-#### Option A: GitHub Actions (Recommended)
-1. Go to your repository settings on GitHub (**Settings** > **Pages**).
-2. Under **Build and deployment** > **Source**, select **GitHub Actions** from the dropdown menu.
-3. Every time you push to the `main` branch, the site will automatically build and deploy successfully.
+#### Automated Deployment (Recommended)
+Every time you push changes to the **`dev`** branch on GitHub:
+1. A GitHub Actions workflow automatically triggers.
+2. It builds the Vite project and pushes the compiled files directly to the **`main`** branch.
+3. GitHub Pages (which is configured to deploy from the root of `main` by default) automatically publishes the new version live.
 
-#### Option B: Deploy branch (`gh-pages`)
-1. Run this command locally to build and publish the site:
+#### Manual Deployment (Backup)
+If you want to manually build and publish the site locally:
+1. Checkout the `dev` branch:
+   ```bash
+   git checkout dev
+   ```
+2. Build and publish the static contents directly to the `main` branch:
    ```bash
    npm run deploy
    ```
-2. Go to your repository settings on GitHub (**Settings** > **Pages**).
-3. Under **Build and deployment** > **Source**, select **Deploy from a branch**.
-4. Set the **Branch** dropdown to `gh-pages` and folder to `/ (root)`. Click **Save**.
 
 *The original Figma design coordinates this site maps can be reviewed [here](https://www.figma.com/design/zuM1G91apEZxslq7dtunLX/ISMO-Notebook).*
 
